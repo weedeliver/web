@@ -11,14 +11,27 @@
     {% include "elements/nav.html" %}
     <div class="global">
         <h3>Kontaktua</h3>
-        <div class="hflex">
-            <div class="vflex">
-                <form>
-                    kaixo
-                </form>
+        <form>
+            <div class="hflex">
+                <div class="vflex kontaktuaform">
+                    <label for="izena">Izena</label>
+                    <input type="text" name="izena">
+
+                    <label for="abizena">Abizena</label>
+                    <input type="text" name="abizena">
+
+                    <label for="emaila">Emaila</label>
+                    <input type="text" name="emaila">
+
+                    <label for="telefonoa">Telefonoa</label>
+                    <input type="text" name="telefonoa">
+                </div>
+                <img class="kontaktuaimg" src="{% static "irudiak/webimg/monkeys.jpg" %}">
             </div>
-            <img src="{% static "irudiak/webimg/monkeys.jpg" %}">
-        </div>
+            <label for="mezua">Mezua</label>
+            <textarea name="mezua" id="mezua" class="kontaktuata" rows="10"></textarea>
+            <input type="submit" value="Bidali" class="btn kontaktuabtn">
+        </form>
     </div>
     {% include "elements/footer.html" %}
 </body>

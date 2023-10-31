@@ -129,6 +129,23 @@ h3 {
     flex-direction:column;
 }
 
+.btn {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width:fit-content;
+    box-shadow: rgba(0, 0, 0, 0.31) 2px 2px 0;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
+    transform: translate(-2px, -2px);
+}
+
 /*PRODUKTUAK*/
 .kategoriak {
     display:flex;
@@ -189,9 +206,11 @@ h3 {
 .deetsizena {
     font-size: 20px;
     font-weight: 700;
+    max-width: 240px;
     color: #1a1a1a;
-    max-height: 28px;
+    white-space:nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .deetsprezioa {
@@ -207,23 +226,11 @@ h3 {
 }
 
 .produktuaikusibtn {
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 10px;
     padding: 7px 12px;
     font-size: 15px;
     margin-top: 10px;
-    cursor: pointer;
     width:fit-content;
-    box-shadow: rgba(0, 0, 0, 0.31) 2px 2px 0;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none;
-}
-
-.produktuaikusibtn:hover {
-    box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
-    transform: translate(-2px, -2px);
+    white-space: nowrap;
 }
 
 .produktuacard a {
@@ -233,3 +240,40 @@ h3 {
 
 
 /*KONTAKTUA*/
+
+.kontaktuaimg {
+    height: 400px;
+    width: 600px;
+    max-width: 40%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.kontaktuaform {
+    flex:1;
+    margin-right: 50px;
+}
+
+.kontaktuaform input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.kontaktuata {
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.kontaktuabtn {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
