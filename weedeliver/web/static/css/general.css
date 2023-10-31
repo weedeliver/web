@@ -1,0 +1,102 @@
+/*NAV*/
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+nav{
+    margin: 0;
+    background-color: white;
+}
+
+nav h1{
+    color: black;
+    font-size: 60px;
+}
+
+nav button{
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 0.25em;
+    box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
+    transition: all 0.2s ease-in-out;
+}
+
+nav button:hover{
+    box-shadow: rgba(0, 0, 0, 0.31) 6px 6px 0;
+    transform: translate(-2px, -2px);
+}
+
+.navtitle{
+    margin-top: 5em;
+    margin-left: 3em;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+
+}
+
+ul div{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+ul li{
+    margin-top: 1.5em;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+nav a{
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #30C150;
+}
+
+.logo{
+    width: 20%;
+}
+
+/*FOOTER*/
+footer{
+    background-color: black;
+    text-align: center;
+}
+
+.footer-logo{
+    width: 10%;
+    margin-top: 1em;
+}
+
+.footer-content{
+    border-top: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    
+    color: white;
+}
+
+footer p{
+    font-size: 15px;
+}

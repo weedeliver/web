@@ -1,0 +1,100 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/general.css" %}'>
+    <link rel="stylesheet" href='{% static "css/kontaktua.css" %}'>
+    <title>WeeDeliver</title>
+
+    
+</head>
+
+<body>
+    <div class="">
+        <!--Navbar-->
+        <div>
+            <nav>
+                <ul>
+                    <div class="">
+                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
+                        <li><a href="/">Hasiera</a></li>
+                        <li><a href="/produktuak">Produktuak</a></li>
+                        <li><a href="/kontaktua">Kontaktua</a></li>
+                    </div>
+  
+                    <div>
+                        <li><a>(0)</a></li>
+                        <li><a>Sortu Kontua</a></li>
+                        <li><button>Hasi Saioa</button></li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+
+       <!--Form-->
+        <div>
+            <form>
+                <div class="form-top">
+                    <div class="datuak">
+                        <h1>Kontaktua</h1>
+                        <label for="izena">Izena</label>
+                        <input type="text" name="izena">
+
+                        <label for="abizena">Abizena</label>
+                        <input type="text" name="abizena">
+
+                        <label for="emaila">Emaila</label>
+                        <input type="text" name="emaila">
+
+                        <label for="telefonoa">Telefonoa</label>
+                        <input type="text" name="telefonoa">
+                    </div>
+                    <div>
+                        <img src='{% static "irudiak/monkeys.svg" %}' class="monkeys">
+                    </div>
+                </div>
+               <div class="form-bottom">
+                    <label for="mezua">Mezua</label>
+                    <input type="text" name="mezua" class="mezua">
+                    <button type="submit" class="bidali">Bidali</button>
+               </div>
+            </form>
+        </div>
+        
+
+        <!--Footer-->
+        <div>
+            <footer>
+                <div>
+                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
+                </div>
+
+                <div class="footer-content">
+                    <div>
+                        <h3>WeeDeliver</h3>
+                        <a><p>WeeDeliver-i buruz</p></a>
+                        <a><p>WeeDeliver fundazioa</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Produktuak</h3>
+                        <a><p>Produktuei buruz</p></a>
+                        <a><p>Produktu guztiak</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Sare Sozialak</h3>
+                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
+                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
+                        <img src='{% static "irudiak/x-icon.svg" %}'>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

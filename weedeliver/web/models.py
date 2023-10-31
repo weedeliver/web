@@ -25,6 +25,7 @@ class Produktua(models.Model):
     kategoria = models.ManyToManyField(Kategoria)
     prezioa = models.FloatField()
     deskontua = models.ForeignKey(Deskontua,on_delete=models.CASCADE)
+    irudia = models.ImageField(upload_to='web/static/irudiak/produktuak/')
 
 class Erosketa(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
