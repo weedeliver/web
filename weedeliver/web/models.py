@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Bezeroa(models.Model):
     izena = models.CharField(max_length=100)
@@ -14,10 +15,12 @@ class Bezeroa(models.Model):
 class Kategoria(models.Model):
     izena = models.CharField(max_length=100)
 
+
 class Deskontua(models.Model):
     izena = models.CharField(max_length=100)
     kantitatea = models.IntegerField()
     isEhunekoa = models.BooleanField()
+
 
 class Produktua(models.Model):
     izena = models.CharField(max_length=100)
@@ -25,7 +28,8 @@ class Produktua(models.Model):
     kategoria = models.ManyToManyField(Kategoria)
     prezioa = models.FloatField()
     deskontua = models.ForeignKey(Deskontua,on_delete=models.CASCADE)
-    irudia = models.ImageField(upload_to='web/static/irudiak/produktuak/')
+    img = models.ImageField(upload_to='web/static/irudiak/produktuak/')
+
 
 class Erosketa(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)

@@ -1,152 +1,95 @@
-/*NAV*/
-html{
-    margin: 0;
-    padding: 0;
-}
-
-body{
-    padding: 0;
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-nav{
-    background: url("/static/irudiak/backimage.svg")center no-repeat;
+#hero {
+    display: flex;
+    flex-direction: column;
+    background: url('/static/irudiak/webimg/hero.png') no-repeat center center;
     background-size: cover;
-    height: 550px;
+    max-height:700px;
+    height: 100vh;
+
 }
 
-nav h1{
+nav {
+    background:none;
+}
+
+nav a {
+    color:white;
+}
+
+h1 {
+    font-size: 100px;
     color: white;
-    font-size: 60px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 800;
 }
 
-nav button{
+a {
+    text-decoration: none;
+    width:fit-content;
+}
+
+.herocontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 50px;
+    max-width: 1600px;
+    width:calc(100% - 100px);
+    align-self: center;
+}
+
+.herobutton {
     background-color: black;
     color: white;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 5px;
-    padding: 0.25em;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    margin-top: 50px;
+    cursor: pointer;
+    width:fit-content;
     box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
     transition: all 0.2s ease-in-out;
 }
 
-nav button:hover{
+.herobutton:hover {
     box-shadow: rgba(0, 0, 0, 0.31) 6px 6px 0;
     transform: translate(-2px, -2px);
 }
 
-.navtitle{
-    margin-top: 5em;
-    margin-left: 3em;
-}
-
-ul{
+/*AFTER HERO*/
+.homesection {
     display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-
+    margin: 50px 0;
+    width: 100%;
 }
 
-ul div{
-    display: flex;
-    flex-direction: row;
-    margin-top: 1em;
-    margin-right: 1em;
+.homesection img {
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
 }
 
-ul li{
-    margin-top: 1.5em;
-    margin-left: 1em;
+.rightsection {
+    margin-left: 30px;
 }
 
-nav a{
-    color: white;
-    font-size: 15px;
-    text-decoration: none;
+.rightsection {
+    margin-right: 30px;
 }
 
-a:hover{
-    color: #30C150;
+/*AMAIERA*/
+.goseaduzu {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
-.logo{
-    width: 20%;
-}
-
-/*PRODUKTUAK*/
-
-div.scrollmenu {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-.produktua{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 1em;
-    /*border: 1px solid black;
-    border-radius: 5px;*/
-}
-
-.produktua img{
-    width: 300px;
-    height: 250px;
-}
-
-.products h1{
-    margin-left: 1em;
-}
-
-/*ARTIKULUAK*/
-
-.artikuluak{
-    margin-top: 1em;
-    margin-left: 1em;
-}
-
-.normal-article{
-    display: flex;
-    flex-direction: row;
-    margin: 1em;
-}
-
-.reverse-article{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 1em;
-}
-
-article img{
-    width: 90%;
-}
-
-/*FOOTER*/
-footer{
-    background-color: black;
-    text-align: center;
-}
-
-.footer-logo{
-    width: 10%;
-    margin-top: 1em;
-}
-
-.footer-content{
-    border-top: 1px solid white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
-    
-    color: white;
-}
-
-footer p{
-    font-size: 15px;
+.goseaduzu div {
+    margin: 30px;
 }

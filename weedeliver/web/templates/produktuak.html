@@ -1,102 +1,65 @@
 {% load static %}
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "css/general.css" %}'>
-    <link rel="stylesheet" href='{% static "css/produktuak.css" %}'>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <title>WeeDeliver</title>
-
-    
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Produktuak - WeeDeliver</title>
 </head>
-
 <body>
-    <div class="">
-        <!--Navbar-->
-        <div>
-            <nav>
-                <ul>
-                    <div class="">
-                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
-                        <li><a href="/">Hasiera</a></li>
-                        <li><a href="/produktuak">Produktuak</a></li>
-                        <li><a href="/kontaktua">Kontaktua</a></li>
-                    </div>
-  
-                    <div>
-                        <li><a>(0)</a></li>
-                        <li><a>Sortu Kontua</a></li>
-                        <li><button>Hasi Saioa</button></li>
-                    </div>
-                </ul>
-            </nav>
-        </div>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <div id="slideshow">
+            <div class="slide slidesmall">
 
-        <!--Carousel-->
-        
-        <!--kategoriak-->
-        <div class="kategoriak">
-            <h4>Kategoriak</h4>
-            {% for kategoria in kategoriak %}
-            <button type="button">{{kategoria.izena}}</button>
-            {% endfor %}
-        </div>
+            </div>
+            <div class="slide slidelarge">
 
-        <!--Produktuak-->
-        <div class="produktuak">
-            {% for produktua in produktuak %}
-            <div class="product-indib">
-                <div>
-                    <img src="../{{ produktua.irudia|cut:'web/' }}">
+            </div>
+            <div class="slide slidesmall">
+
+            </div>
+        </div>
+    <div class="kategoriak">
+    <!-- Kategoriak -->
+        {% for kategoria in kategoriak %}
+            <!-- Kategoria aktiboa -->
+            {% if aukeratutako_kategoria.izena == kategoria.izena %}
+                <div class="kategoria kategoria-aktiboa">
+            {% else %}
+                <!-- Kategoria ez aktiboa -->
+                <div class="kategoria">
+            {% endif %}
+                    {{ kategoria.izena }}
                 </div>
-                <div class="product-info">
-                    <div>
-                        <h5>{{produktua.izena}}</h5>
-                        <p>{{produktua.prezioa}} + bidalketa</p>
+        {% endfor %}
+    </div>
+    <h3>Produktu guztiak</h3>
+    <div class="produktuak">
+        {% for produktua in produktuak %}
+            <div class="produktuacard">
+                <img src="../{{ produktua.img|cut:'web/' }}">
+                <div class="produktuadeets">
+                    <div class="deetstext">
+                        <span class="deetsizena">{{ produktua.izena }}</span>
+                        <span class="deetsprezioa">
+                            {{ produktua.prezioa }}€
+                            <span class="deetsbidalketa"> +bidalketa</span>
+                        </span>
                     </div>
-                    <div>
-                        <button type="button">+Gehitu</button>
-                    </div>
+                    <a href="">
+                        <div class="produktuaikusibtn">
+                            Ikusi ->
+                        </div>
+                    </a>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-
-        <!--Footer-->
-        <div>
-            <footer>
-                <div>
-                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
-                </div>
-
-                <div class="footer-content">
-                    <div>
-                        <h3>WeeDeliver</h3>
-                        <a><p>WeeDeliver-i buruz</p></a>
-                        <a><p>WeeDeliver fundazioa</p></a>
-                    </div>
-    
-                    <div>
-                        <h3>Produktuak</h3>
-                        <a><p>Produktuei buruz</p></a>
-                        <a><p>Produktu guztiak</p></a>
-                    </div>
-    
-                    <div>
-                        <h3>Sare Sozialak</h3>
-                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
-                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
-                        <img src='{% static "irudiak/x-icon.svg" %}'>
-                    </div>
-                </div>
-            </footer>
-        </div>
+     {% endfor %}
     </div>
-</body>
 
+    </div> <!--pycharmen errorea /shrug-->
+    </div>
+    {% include "elements/footer.html" %}
+</body>
 </html>
