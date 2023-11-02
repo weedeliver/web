@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>{{ produktua.izena }} - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <div class="hflex">
+            <div class="vflex">
+                <div class="hflex">
+                    <!-- Itzuli botoia -->
+                    <a href="/produktuak"  class="hflextitle">
+                        <h4 class="hflextitle">
+                            <- Itzuli
+                        </h4>
+                    </a>
+                    <!-- Produktuaren kategoriak -->
+                    {% for kategoria in kategoriak %}
+                        <div class="produktuacatpill">
+                            {{ kategoria.kategoria__izena }}
+                        </div>
+                    {% endfor %}
+                </div>
+            <h3>{{ produktua.izena }}</h3>
+            <h4>{{ produktua.prezioa }}€</h4>
+            </div>
+            <div class="produktuairudia">
+                <img alt="{{ produktua.izena }}" src="../../{{ produktua.img|cut:'web/' }}">
+            </div>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>

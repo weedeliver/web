@@ -1,5 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
+/*TEXT*/
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+a {
+    color:black;
+}
+
+a:visited {
+    color:black;
+}
+
+
 /*NAV&FOOTER*/
 body {
     margin:0;
@@ -49,7 +80,7 @@ footer h3 {
 }
 
 .footer-logo {
-    width: 10%;
+    width: 200px;
     margin-top: 1em;
 }
 
@@ -75,20 +106,15 @@ footer p {
     width: 30px;
 }
 
-/*TEXT*/
-h2 {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1;
-    color: #1a1a1a;
+.whitea {
+    color:white;
+    text-decoration:none;
 }
 
-h3 {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1;
-    color: #1a1a1a;
+.whitea:visited {
+    color:white;
 }
+
 
 /*GLOBAL*/
 .global {
@@ -102,7 +128,7 @@ h3 {
 .carousel {
     display: flex;
     margin: 0;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .carouselitem {
@@ -120,13 +146,19 @@ h3 {
     border-radius: 10px;
 }
 
+.vflex {
+    display:flex;
+    flex-direction:column;
+}
+
 .hflex {
     display:flex;
 }
 
-.vflex {
-    display:flex;
-    flex-direction:column;
+/* hflex title fix, mostly for categories */
+.hflextitle {
+    margin: 0 10px 0 0;
+    align-self: center;
 }
 
 .btn {
@@ -236,6 +268,23 @@ h3 {
 .produktuacard a {
     text-decoration: none;
     width:fit-content;
+}
+
+/* PRODUKTUA (INDIBIDUALA) */
+.produktuacatpill {
+    background-color: #A0FAB4;
+    color: black;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin: 0 10px 0 0;
+    width:fit-content;
+}
+
+.produktuairudia img {
+    height: 500px;
+    width: 500px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 

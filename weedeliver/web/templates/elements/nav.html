@@ -7,6 +7,12 @@
         <a href="/kontaktua">Kontaktua</a>
     </div>
     <div id="navr">
-        <a>proba</a>
+        {% if user is authenticated %}
+            <a> {{ user.username }} zara</a>
+        {% else %}
+            <a href="/signup"> Sortu kontua </a>
+            <a href="/login"> Saioa hasi </a>
+        {% endif %}
+
     </div>
 </nav>

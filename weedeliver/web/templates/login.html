@@ -1,0 +1,22 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>login proba css gabe (ez du egiten)</h1>
+    <form action="auth/" method="post">
+        {% csrf_token %}
+        <label for="emaila">Email:</label>
+        <input type="email" name="emaila" id="emaila" required>
+        <br>
+        <label for="password">Pasahitza:</label>
+        <input type="password" name="password" id="password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

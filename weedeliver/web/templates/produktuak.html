@@ -23,6 +23,7 @@
         </div>
     <div class="kategoriak">
     <!-- Kategoriak -->
+    <h4 class="hflextitle">Kategoriak </h4>
         {% for kategoria in kategoriak %}
             <!-- Kategoria aktiboa -->
             {% if aukeratutako_kategoria.izena == kategoria.izena %}
@@ -39,7 +40,7 @@
     <div class="produktuak">
         {% for produktua in produktuak %}
             <div class="produktuacard">
-                <img src="../{{ produktua.img|cut:'web/' }}">
+                <img alt="{{ produktua.izena }}" src="../{{ produktua.img|cut:'web/' }}">
                 <div class="produktuadeets">
                     <div class="deetstext">
                         <span class="deetsizena">{{ produktua.izena }}</span>
@@ -48,7 +49,7 @@
                             <span class="deetsbidalketa"> +bidalketa</span>
                         </span>
                     </div>
-                    <a href="">
+                    <a href="/produktua/{{ produktua.id }}/">
                         <div class="btn produktuaikusibtn">
                             Ikusi ->
                         </div>

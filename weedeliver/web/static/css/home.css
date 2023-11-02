@@ -16,6 +16,10 @@ nav a {
     color:white;
 }
 
+nav a:visited {
+    color:white;
+}
+
 h1 {
     font-size: 100px;
     color: white;
@@ -23,6 +27,11 @@ h1 {
     padding: 0;
     line-height: 1;
     font-weight: 800;
+}
+
+
+h4 {
+    margin: 10px;
 }
 
 a {

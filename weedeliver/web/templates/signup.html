@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>signup proba css gabe</h1>
+    <form action="kontuaSortu/" method="post">
+        {% csrf_token %}
+        <label for="izena">Izena:</label>
+        <input type="text" name="izena" id="izena" required><br>
+        <label for="abizena">Abizena:</label>
+        <input type="text" name="abizena" id="abizena" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br>
+        <label for="pasahitza">Pasahitza:</label>
+        <input type="password" name="pasahitza" id="pasahitza" required><br>
+        <label for="pasahitza2">Pasahitza errepikatu:</label>
+        <input type="password" name="pasahitza2" id="pasahitza2" required><br>
+        <label for="telefonoa">Telefonoa:</label>
+        <input type="text" name="telefonoa" id="telefonoa" required><br>
+        <input type="submit" value="Sortu">
+    </form>
+</body>
+</html>
