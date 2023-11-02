@@ -8,15 +8,18 @@
 </head>
 <body>
     <h1>login proba css gabe (ez du egiten)</h1>
-    <form action="auth/" method="post">
+    <form action="/login/auth/" method="post">
         {% csrf_token %}
-        <label for="emaila">Email:</label>
-        <input type="email" name="emaila" id="emaila" required>
+        <label for="username">Email:</label>
+        <input type="text" name="username" id="username" value="{{ username }}" required>
         <br>
         <label for="password">Pasahitza:</label>
         <input type="password" name="password" id="password" required>
         <br>
         <input type="submit" value="Login">
     </form>
+    <a href="/signup">Erregistratu</a>
+    <br>
+    {{ error }}
 </body>
 </html>

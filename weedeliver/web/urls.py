@@ -15,4 +15,5 @@ urlpatterns = [
     path('signup/kontuaSortu/', views.kontua_sortu, name='kontuaSortu'),
     path('login/', views.login_view, name='login'),
     path('login/auth/', views.auth, name='auth'),
+    path('logout/', views.logout_view, name='logout'),
 ]
