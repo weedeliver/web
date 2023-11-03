@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -78,7 +79,14 @@ def auth(request):
     return render(request, 'login.html', {'form': form, 'error': 'Erabiltzaile edo pasahitz okerra.'})
 
 
+@login_required
 def logout_view(request):
     # log out the user and redirect to the index page
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
+def kontua(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    return render(request, 'kontua.html', {'bezeroa': bezeroa})

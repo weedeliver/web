@@ -1,4 +1,5 @@
 {% load static %}
+{% load math_filters %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,8 +11,8 @@
 <body>
     {% include "elements/nav.html" %}
     <div class="global">
-        <div class="hflex">
-            <div class="vflex">
+        <div class="produktuaouter">
+            <div class="vflex produktuainfo">
                 <div class="hflex">
                     <!-- Itzuli botoia -->
                     <a href="/produktuak"  class="hflextitle">
@@ -27,7 +28,34 @@
                     {% endfor %}
                 </div>
             <h3>{{ produktua.izena }}</h3>
-            <h4>{{ produktua.prezioa }}€</h4>
+            <h4 class="produktuaprezioa">
+                {% if produktua.deskontua.izena == "Ez" %}
+                    {{ produktua.prezioa|floatformat:2 }}€
+                {% elif produktua.deskontua.isEhunekoa %}
+                    <span class="produktuaprezioa strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                    <span class="produktuaprezioa">-{{ produktua.deskontua.kantitatea }}% {{ produktua.prezioa|floatformat:2|percent:produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                {% else %}
+                    <span class="produktuaprezioa strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                    <span class="produktuaprezioa">-{{ produktua.deskontua.kantitatea }}€ {{ produktua.prezioa|floatformat:2|sub:produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                {% endif %}
+            </h4>
+            <h5>Deskribapena</h5>
+            <p>{{ produktua.deskribapena }}</p>
+            {% if user.is_authenticated %}
+                <form action="/produktuak/{{ produktua.id }}/gehitu" method="POST">
+                    {% csrf_token %}
+                    <div class="hflex">
+                        <div class="produktuakantitatea">
+                            <input type="number" name="kantitatea" value="1" min="1" max="100" required>
+                        </div>
+                        <div class="produktuagehitu">
+                            <input type="submit" value="Gehitu">
+                        </div>
+                    </div>
+                </form>
+            {% else %}
+                <span class="produktualogin"><b><a href="/login">Hasi saioa</a></b> edo <b><a href="/signup">sortu kontu bat</a></b> produktuak erosteko.</span>
+            {% endif %}
             </div>
             <div class="produktuairudia">
                 <img alt="{{ produktua.izena }}" src="../../{{ produktua.img|cut:'web/' }}">

@@ -8,11 +8,10 @@
     </div>
     <div id="navr">
         {% if user.is_authenticated %}
-            <a href="/logout"> {{ user.username }} zara</a>
+            <a href="/kontua"> {{ user.username }} -></a>
         {% else %}
             <a href="/signup"> Sortu kontua </a>
-            <a href="/login"> Hasi saioa </a>
+            <a class="btn navlogin whitea" href="/login"> Hasi saioa </a>
         {% endif %}
-
     </div>
 </nav>

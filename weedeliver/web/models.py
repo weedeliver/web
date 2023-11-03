@@ -25,6 +25,7 @@ class Deskontua(models.Model):
     kantitatea = models.IntegerField()
     isEhunekoa = models.BooleanField()
 
+
 class Produktua(models.Model):
     izena = models.CharField(max_length=100)
     deskribapena = models.TextField()

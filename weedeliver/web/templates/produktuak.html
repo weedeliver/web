@@ -1,4 +1,5 @@
 {% load static %}
+{% load math_filters %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +46,15 @@
                     <div class="deetstext">
                         <span class="deetsizena">{{ produktua.izena }}</span>
                         <span class="deetsprezioa">
-                            {{ produktua.prezioa }}€
+                            {% if produktua.deskontua.izena == "Ez" %}
+                                {{ produktua.prezioa|floatformat:2 }}€
+                            {% elif produktua.deskontua.isEhunekoa %}
+                                <span class="strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                                {{ produktua.prezioa|percent:produktua.deskontua.kantitatea|floatformat:2}}€
+                            {% else %}
+                                <span class="strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                                {{ produktua.prezioa|sub:produktua.deskontua.kantitatea|floatformat:2}}€
+                            {% endif %}
                             <span class="deetsbidalketa"> +bidalketa</span>
                         </span>
                     </div>

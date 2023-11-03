@@ -15,7 +15,7 @@ h3 {
     color: #1a1a1a;
 }
 
-h4 {
+h4, h5 {
     font-size: 20px;
     font-weight: 400;
     line-height: 1;
@@ -28,6 +28,14 @@ a {
 
 a:visited {
     color:black;
+}
+
+a:hover {
+    color:#30C150;
+}
+
+.strike {
+    text-decoration: line-through;
 }
 
 
@@ -63,6 +71,14 @@ nav a {
     margin:10px;
     height: 100%;
     line-height: 50px;
+}
+
+.navlogin {
+    padding: 0 15px;
+}
+
+.navlogin:hover {
+    color:white;
 }
 
 footer {
@@ -123,6 +139,7 @@ footer p {
     align-self: center;
     padding: 0 50px;
     flex-grow: 1;
+    margin-bottom: 50px;
 }
 
 .carousel {
@@ -282,9 +299,46 @@ footer p {
 
 .produktuairudia img {
     height: 500px;
-    width: 500px;
+    width: 700px;
+    max-width: 50vw;
     object-fit: cover;
     border-radius: 10px;
+    align-self:end;
+}
+
+.produktuaouter {
+    display:flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.produktuainfo {
+    flex:1;
+    margin: 0 50px 0 0;
+}
+
+.produktuainfo h3 {
+    margin: 15px 0;
+}
+
+.produktuaprezioa {
+    font-size: 25px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.produktuainfo h5 {
+    margin: 30px 0 0;
+    font-weight: 700;
+}
+
+.produktuainfo p {
+    flex:1;
+}
+
+.produktualogin {
+  font-size: 20px;
 }
 
 
@@ -303,7 +357,7 @@ footer p {
     margin-right: 50px;
 }
 
-.kontaktuaform input {
+.kontaktuaform input, .loginform input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -326,3 +380,47 @@ footer p {
     width: 100%;
     margin: 20px 0;
 }
+
+
+/*LOGIN*/
+.loginform {
+    display:flex;
+    flex-direction:column;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.loginbtn {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.loginpopup {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.loginlogo {
+    width: 200px;
+    margin: 0;
+}
+
+.loginitzuli {
+    margin: 0 0 15px;
+    height: fit-content;
+}
+
+
+/*ACCOUNT*/
+

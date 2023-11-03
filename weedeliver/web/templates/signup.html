@@ -1,14 +1,18 @@
-<html>
+{% load static %}
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Kontua sortu - WeeDeliver</title>
 </head>
 <body>
-    <h1>signup proba css gabe</h1>
-    <form action="kontuaSortu/" method="post">
+    <div class="loginpopup">
+    <a href="/"><h4 class="loginitzuli"><- Itzuli</h4></a>
+    <img alt="WeeDeliver logoa" class="loginlogo" src="{% static "irudiak/logo/logog.svg" %}">
+    <h1>Sortu kontua</h1>
+    <form class="loginform" action="/signup/kontuaSortu/" method="post">
         {% csrf_token %}
         <label for="izena">Izena:</label>
         <input type="text" name="izena" id="izena" required><br>
@@ -22,7 +26,9 @@
         <input type="password" name="pasahitza2" id="pasahitza2" required><br>
         <label for="telefonoa">Telefonoa:</label>
         <input type="text" name="telefonoa" id="telefonoa" required><br>
-        <input type="submit" value="Sortu">
+         <input class="btn loginbtn" type="submit" value="Sortu">
     </form>
+        <a href="/login/">Hasi saioa</a>
+    </div>
 </body>
 </html>
