@@ -22,56 +22,67 @@
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
+                        <img src='{% static "img/logob.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
                     </div>
   
+                    {% if user.is_authenticated %}
                     <div>
-                        <li><a>(0)</a></li>
-                        <li><a>Sortu Kontua</a></li>
-                        <li><button>Hasi Saioa</button></li>
+                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
+                    {% else %}
+                    <div>
+                        <li><a href="/login">(0)</a></li>
+                        <li><a href="/signup">Sortu Kontua</a></li>
+                        <li><button><a href="/login">Hasi Saioa</a></button></li>
+                    </div>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
 
         <!--Carousel-->
-        
-        <!--kategoriak-->
-        <div class="kategoriak">
-            <h4>Kategoriak</h4>
-            {% for kategoria in kategoriak %}
-            <button type="button">{{kategoria.izena}}</button>
-            {% endfor %}
-        </div>
-
-        <!--Produktuak-->
-        <div class="produktuak">
-            {% for produktua in produktuak %}
-            <div class="product-indib">
-                <div>
-                    <img src="../{{ produktua.irudia|cut:'web/' }}">
-                </div>
-                <div class="product-info">
-                    <div>
-                        <h5>{{produktua.izena}}</h5>
-                        <p>{{produktua.prezioa}} + bidalketa</p>
-                    </div>
-                    <div>
-                        <button type="button">+Gehitu</button>
-                    </div>
-                </div>
+        <div>
+            <!--kategoriak-->
+            <div class="kategoriak">
+                <h4>Kategoriak</h4>
+                {% for kategoria in kategoriak %}
+                <button type="button">{{kategoria.izena}}</button>
+                {% endfor %}
             </div>
-            {% endfor %}
+
+            <!--Produktuak-->
+            <form class="produktuak" method="POST">
+
+                {% csrf_token %}   
+                {% for produktua in produktuak %}
+                <div class="product-indib">
+                    <div>
+                        <img src="../{{ produktua.img|cut:'web/' }}">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <h5>{{produktua.izena}}</h5>
+                            <p>{{produktua.prezioa}} + bidalketa</p>
+                        </div>
+                        <div>
+                            <button type="button" id="{{produktua.id}}" class="gehitu">+Gehitu</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </form>
         </div>
 
         <!--Footer-->
         <div>
             <footer>
                 <div>
-                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -89,14 +100,41 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
-                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
-                        <img src='{% static "irudiak/x-icon.svg" %}'>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $("#incorrect").hide()
+
+    //Karritora gehitu
+    $(".gehitu").on('click',function(e) {
+        e.preventDefault()
+        datuak = {product_id: $(this).attr("id")}
+        let csrf_token = '{{csrf_token}}'
+        $.ajax({
+            type:'POST',
+            headers: { 'X-CSRFToken': csrf_token },
+            url: "{% url 'karritora_gehitu' %}",
+            data: datuak,  // Pass datuak directly as the data
+            success: function(response){
+                
+            },error: function (response) {
+                
+            }
+        })
+    })
+
+    
+})
+</script>
 
 </html>

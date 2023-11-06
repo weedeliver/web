@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Deskontua,Produktua,Erosketa,Bezeroa,Kategoria
+from .models import Deskontua, KarritoItem,Produktua,Erosketa,Bezeroa,Kategoria,Karrito
 # Register your models here.
 class BezeroaAdmin(admin.ModelAdmin):
     list_display = ['izena','abizena','emaila','telefonoa','helbidea','txartela','harpidetza']
@@ -36,3 +36,17 @@ class ErosketaAdmin(admin.ModelAdmin):
     search_fields = ['bezeroa','data']
 
 admin.site.register(Erosketa,ErosketaAdmin)
+
+class KarritoAdmin(admin.ModelAdmin):
+    list_display = ['bezeroa']
+    list_filter = ['bezeroa']
+    search_fields = ['bezeroa']
+
+admin.site.register(Karrito,KarritoAdmin)
+
+class KarritoItemAdmin(admin.ModelAdmin):
+    list_display = ['produktua','unitateak']
+    list_filter = ['produktua','unitateak']
+    search_fields = ['produktua','unitateak']
+
+admin.site.register(KarritoItem,KarritoItemAdmin)

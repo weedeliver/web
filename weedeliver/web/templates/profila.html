@@ -1,0 +1,120 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/general.css" %}'>
+    <link rel="stylesheet" href='{% static "css/profila.css" %}'>
+    <title>WeeDeliver</title>
+
+    
+</head>
+
+<body>
+    <div class="">
+        <!--Navbar-->
+        <div>
+            <nav>
+                <ul>
+                    <div class="">
+                        <img src='{% static "img/logob.svg" %}' class="logo">
+                        <li><a href="/">Hasiera</a></li>
+                        <li><a href="/produktuak">Produktuak</a></li>
+                        <li><a href="/kontaktua">Kontaktua</a></li>
+                    </div>
+  
+                    {% if user.is_authenticated %}
+                    <div>
+                        <li><a href="">(0)</a></li>
+                        <li><a href="/profila">{{ user.username }}</a></li>       
+                    </div>
+                    {% else %}
+                    <div>
+                        <li><a href="">(0)</a></li>
+                        <li><a href="/signup">Sortu Kontua</a></li>
+                        <li><button><a href="/login">Hasi Saioa</a></button></li>
+                    </div>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="profila">
+            <h2>Profila</h2>
+            <div class="info">
+                <div class="user">
+                    <div><img src='{% static "img/article3.svg" %}' class="user-img"></div>
+                    <div>
+                        <h3>{{bezeroa.izena}}</h3>
+                        <p>{{bezeroa.herria}},{{bezeroa.posta_kodea}}</p>
+                    </div>
+                </div>
+                <div class="links">
+                    <a>Editatu</a>
+                    {% if user.is_authenticated %}
+                        <a href="logout/">Saioa itxi</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!--Erosketak-->
+            <div class="erosketak">
+                <div>
+                    <h2>Azken erosketak</h2>
+                </div>
+                <div class="erosketa-info">
+                    <p>a</p>
+                    <p>b</p>
+                    <p>c</p>
+                </div>
+            </div>
+            <!--Beste batzuk-->
+            <div class="upgrade">
+                <h3>Doako bidalketa nahi?</h3>
+                <h5>Probatu WeeDeliver Plus</h5>
+                <p>4.99€/hilabete</p>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <div>
+            <footer>
+                <div>
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                </div>
+
+                <div class="footer-content">
+                    <div>
+                        <h3>WeeDeliver</h3>
+                        <a><p>WeeDeliver-i buruz</p></a>
+                        <a><p>WeeDeliver fundazioa</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Produktuak</h3>
+                        <a><p>Produktuei buruz</p></a>
+                        <a><p>Produktu guztiak</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Sare Sozialak</h3>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+</script>
+
+</html>

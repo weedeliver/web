@@ -35,6 +35,10 @@ nav button:hover{
     transform: translate(-2px, -2px);
 }
 
+nav button a{
+    color: white;
+}
+
 .navtitle{
     margin-top: 5em;
     margin-left: 3em;
@@ -66,7 +70,7 @@ nav a{
     text-decoration: none;
 }
 
-a:hover{
+nav a:hover{
     color: #30C150;
 }
 
@@ -76,6 +80,8 @@ a:hover{
 
 /*FOOTER*/
 footer{
+    height: 50%;
+
     background-color: black;
     text-align: center;
 }

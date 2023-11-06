@@ -19,17 +19,24 @@
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
+                        <img src='{% static "img/logob.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
                     </div>
   
+                    {% if user.is_authenticated %}
                     <div>
-                        <li><a>(0)</a></li>
-                        <li><a>Sortu Kontua</a></li>
-                        <li><button>Hasi Saioa</button></li>
+                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
+                    {% else %}
+                    <div>
+                        <li><a href="/login">(0)</a></li>
+                        <li><a href="/signup">Sortu Kontua</a></li>
+                        <li><button><a href="/login">Hasi Saioa</a></button></li>
+                    </div>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
@@ -53,7 +60,7 @@
                         <input type="text" name="telefonoa">
                     </div>
                     <div>
-                        <img src='{% static "irudiak/monkeys.svg" %}' class="monkeys">
+                        <img src='{% static "img/monkeys.svg" %}' class="monkeys">
                     </div>
                 </div>
                <div class="form-bottom">
@@ -69,7 +76,7 @@
         <div>
             <footer>
                 <div>
-                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -87,9 +94,9 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
-                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
-                        <img src='{% static "irudiak/x-icon.svg" %}'>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>

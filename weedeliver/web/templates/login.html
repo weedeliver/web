@@ -1,0 +1,124 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/general.css" %}'>
+    <link rel="stylesheet" href='{% static "css/login.css" %}'>
+    <title>WeeDeliver</title>
+
+    
+</head>
+
+<body>
+    <div class="">
+        <!--Navbar-->
+        <div>
+            <nav>
+                <ul>
+                    <div class="">
+                        <img src='{% static "img/logob.svg" %}' class="logo">
+                        <li><a href="/">Hasiera</a></li>
+                        <li><a href="/produktuak">Produktuak</a></li>
+                        <li><a href="/kontaktua">Kontaktua</a></li>
+                    </div>
+  
+                    {% if user.is_authenticated %}
+                    <div class="user" id="user">
+                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/profila">{{ user.username }}</a></li>       
+                    </div>
+                    {% else %}
+                    <div class="log" id="log">
+                        <li><a href="/login">(0)</a></li>
+                        <li><a href="/signup">Sortu Kontua</a></li>
+                        <li><button><a href="/login">Hasi Saioa</a></button></li>
+                    </div>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <!--Form login -->
+        <div>
+            <form method="GET">
+                {% csrf_token %}
+                <div>
+                    <label for="user">Erabiltzailea</label>
+                    <input type="text" name="user" id="user">
+
+                    <label for="pasahitza">Pasahitza</label>
+                    <input type="password" name="pasahitza" id="pasahitza">
+
+                    <button type="submit">Saioa hasi</button>
+                    <p id="incorrect" class="incorrect">Erabiltzailea edo pasahitza gaizki dago.Saiatu Berriro</p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="sortu">
+            <p>Ez duzu konturik?</p>
+            <p><a href="/signup">Kontua sortu</a></p>
+        </div>
+
+        <!--Footer-->
+        <div>
+            <footer>
+                <div>
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                </div>
+
+                <div class="footer-content">
+                    <div>
+                        <h3>WeeDeliver</h3>
+                        <a><p>WeeDeliver-i buruz</p></a>
+                        <a><p>WeeDeliver fundazioa</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Produktuak</h3>
+                        <a><p>Produktuei buruz</p></a>
+                        <a><p>Produktu guztiak</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Sare Sozialak</h3>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#incorrect").hide()
+
+        $(document).on('submit','form',function(e) {
+            e.preventDefault()
+            var user = $('#user').val()
+            var pasahitza = $('#pasahitza').val()
+            $.ajax({
+                type:'GET',
+                url: "{% url 'saioa_hasi' %}",
+                data: {
+                    erabiltzailea : user,
+                    pasahitza : pasahitza
+                },
+                success: function(response){
+                    window.location.href = response.redirect;
+                },error: function (response) {
+                    $("#incorrect").show()
+                }
+            })
+        })
+    })
+</script>
+
+</html>

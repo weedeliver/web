@@ -1,0 +1,103 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/general.css" %}'>
+    <link rel="stylesheet" href='{% static "css/signup.css" %}'>
+    <title>WeeDeliver</title>
+
+    
+</head>
+
+<body>
+       <!--Form login -->
+        <div class="formularioa">
+            <div><img src='{% static "img/logog.svg" %}'></div>
+                <form action="kontuaSortu/" method="POST">
+                        {% csrf_token %}
+                        <div class="custom-input">
+                            <label for="izena">Izena</label>
+                            <input type="text" name="izena" id="izena">
+
+                            <label for="abizena">Abizena</label>
+                            <input type="text" name="abizena" id="abizena">
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email">
+                        </div>
+
+                        <div class="custom-input">
+                            <label for="pasahitza">Pasahitza</label>
+                            <input type="password" name="pasahitza" id="pasahitza">
+
+                            <label for="pasahitza2">Pasahitza errepikatu</label>
+                            <input type="password" name="pasahitza2" id="pasahitza2">
+                        </div>
+
+                        <div>
+                            <label for="telefonoa">Telefonoa</label>
+                            <input type="text" name="telefonoa" id="telefonoa">
+                        </div>
+
+                        <div class="custom-input">
+                            <label for="helbidea">Helbidea</label>
+                            <input type="text" name="helbidea" id="helbidea">
+
+                            <label for="herria">Herria</label>
+                            <input type="text" name="herria" id="herria">
+
+                            <label for="posta">Posta</label>
+                            <input type="text" name="posta" id="posta">
+                        </div>
+
+                        <div>
+                            <label for="txartela">Txartela</label>
+                            <input type="number" name="txartela" id="txartela">
+                        </div>
+
+                        <div>
+                            <button type="button"><a href="/">Itzuli</a></button>
+                            <button type="submit" >Kontua sortu</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+        
+
+        <!--Footer-->
+        <div>
+            <footer>
+                <div>
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                </div>
+
+                <div class="footer-content">
+                    <div>
+                        <h3>WeeDeliver</h3>
+                        <a><p>WeeDeliver-i buruz</p></a>
+                        <a><p>WeeDeliver fundazioa</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Produktuak</h3>
+                        <a><p>Produktuei buruz</p></a>
+                        <a><p>Produktu guztiak</p></a>
+                    </div>
+    
+                    <div>
+                        <h3>Sare Sozialak</h3>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

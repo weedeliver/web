@@ -18,17 +18,23 @@
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "irudiak/logow.svg" %}' class="logo">
+                        <img src='{% static "img/logow.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
                     </div>
-  
-                    <div>
-                        <li><a href="">(0)</a></li>
-                        <li><a href="">Sortu Kontua</a></li>
-                        <li><button>Hasi Saioa</button></li>
+                    {% if user.is_authenticated %}
+                    <div class="user" id="user">
+                        <li><a href="/karrito">(0)</a></li>
+                            <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
+                    {% else %}
+                    <div class="log" id="log">
+                        <li><a href="/login">(0)</a></li>
+                        <li><a href="/signup">Sortu Kontua</a></li>
+                        <li><button><a href="/login">Hasi Saioa</a></button></li>
+                    </div>
+                    {% endif %}
                 </ul>
                 <div class="navtitle">
                     <h1>As fast <br> as Speed</h1>
@@ -42,24 +48,24 @@
             <h1>Janari azkarra</h1>
             <div class="scrollmenu">
                 <div class="produktua">
-                    <a><img src='{% static "irudiak/produktuak/weedpizza_D8FzO9S.jpg" %}'></a>
+                    <a><img src='{% static "img/produktuak/weedpizza_D8FzO9S.jpg" %}'></a>
                     <h3>Weed Pizza</h3>
                 </div>
                 
                 <div class="produktua">
-                    <a><img src='{% static "irudiak/produktuak/weedburger_oAX8zsv.jpg" %}'></a>
+                    <a><img src='{% static "img/produktuak/weedburger_oAX8zsv.jpg" %}'></a>
                     <h3>Weed Burger</h3>
                 </div>
                 <div class="produktua">
-                    <a><img src='{% static "irudiak/produktuak/weedcupcake2_OCKTjEG.jpg" %}'></a>
+                    <a><img src='{% static "img/produktuak/weedcupcake2_OCKTjEG.jpg" %}'></a>
                     <h3>Weed Cupcake</h3>
                 </div>
                 <div class="produktua">
-                    <a><img src='{% static "irudiak/produktuak/brownies_YpOVEip.jpg" %}'></a>
+                    <a><img src='{% static "img/produktuak/brownies_YpOVEip.jpg" %}'></a>
                     <h3>Weed Brownies</h3>
                 </div>
                 <div class="produktua">
-                    <a><img src='{% static "irudiak/produktuak/croquets_Y2zaXJZ.jpg" %}'></a>
+                    <a><img src='{% static "img/produktuak/croquets_Y2zaXJZ.jpg" %}'></a>
                     <h3>Weed Pizza</h3>
                 </div>
             </div>
@@ -69,7 +75,7 @@
         <div class="artikuluak">
             <article class="normal-article">
                 <div>
-                    <img src='{% static "irudiak/article1.svg" %}'>
+                    <img src='{% static "img/article1.svg" %}'>
                 </div>
                 <div>
                     <h1>Zure osagai gogokoenak</h1>
@@ -83,13 +89,13 @@
                     <p>Lorem ipsum</p>
                 </div>
                 <div>
-                    <img src='{% static "irudiak/article2.svg" %}'>
+                    <img src='{% static "img/article2.svg" %}'>
                 </div>
             </article>
 
             <article class="normal-article">
                 <div>
-                    <img src='{% static "irudiak/article3.svg" %}'>
+                    <img src='{% static "img/article3.svg" %}'>
                 </div>
                 <div>
                     <h1>Etxerako</h1>
@@ -102,7 +108,7 @@
         <div>
             <footer>
                 <div>
-                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -120,14 +126,21 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
-                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
-                        <img src='{% static "irudiak/x-icon.svg" %}'>
+                        <img src='{% static "img/instagram-icon.svg" %}'>
+                        <img src='{% static "img/facebook-icon.svg" %}'>
+                        <img src='{% static "img/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        
+    })
+</script>
 
 </html>
