@@ -90,3 +90,10 @@ def kontua(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
     return render(request, 'kontua.html', {'bezeroa': bezeroa})
+
+
+def plus(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    return render(request, 'plus.html', {'bezeroa': bezeroa})
+

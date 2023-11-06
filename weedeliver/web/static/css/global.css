@@ -131,6 +131,23 @@ footer p {
     color:white;
 }
 
+.notd {
+    text-decoration:none;
+}
+
+.flex1 {
+    flex:1;
+}
+
+.warndiv {
+    background-color: #fff5d6;
+    border: solid 1px #f0c36d;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
 
 /*GLOBAL*/
 .global {
@@ -423,4 +440,104 @@ footer p {
 
 
 /*ACCOUNT*/
+.bento {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #DADADA;
+}
 
+.bento h3 {
+    color: black;
+    margin: 0 0 10px;
+}
+
+.bento p {
+    color: black;
+    margin: 0 0 5px;
+}
+
+.bento h5 {
+    color: black;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.accountbento {
+    margin-left: 25px;
+}
+
+
+/*PLUS*/
+.adweedeliverplus p {
+        font-size: 22px;
+}
+
+.adweedeliverplus span {
+    color: black;
+    font-size: 28px;
+    text-align:right;
+    margin-top: -20px
+}
+
+.plustitle {
+    margin-bottom: -10px;
+}
+
+.pluscards {
+    justify-content: center;
+}
+
+.pluscard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 25px;
+    padding: 20px 10px;
+    width: 300px;
+    height: 500px;
+    background: #DADADA;
+    border-radius: 10px;
+}
+
+.pluscard h3 {
+    color: black;
+    margin: 0 0 10px;
+}
+
+.pluscard p {
+    color: black;
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.pluscard h5 {
+    color: black;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.upgradebtn {
+    margin-top: 20px;
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+}
+
+.upgradebtn:hover {
+    background: black;
+    color: white;
+}
+
+.pluscolors {
+    background: linear-gradient(105deg, #A0FAB4 0%, #ABFAFF 72.8%, #ADA0FA 100%);
+}
+
+.btm {
+    text-align: center;
+}

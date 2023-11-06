@@ -39,3 +39,9 @@ class Erosketa(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
     produktuak = models.ManyToManyField(Produktua)
     data = models.DateTimeField(auto_now_add=True)
+
+
+class Saskia(models.Model):
+    bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
+    produktuak = models.ManyToManyField(Produktua)
+

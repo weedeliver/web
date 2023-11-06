@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='{% static "css/global.css" %}'>
     <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
-    <title>Produktuak - WeeDeliver</title>
+    <title>Kontua - WeeDeliver</title>
 </head>
 <body>
     {% include "elements/nav.html" %}
@@ -14,6 +14,44 @@
         <div class="hflex">
             <h3 class="hflextitle">Kaixo, {{ bezeroa.izena }}!</h3>
             <a class="hflextitle" href="/logout/">itxi saioa</a>
+        </div>
+        <div class="hflex">
+            <div class="vflex flex1">
+                {% if bezeroa.helbidea == none %}
+                    <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak eskaera bat egiteko</div>
+                {% endif %}
+                <h4>Zure erosketak</h4>
+                <!--TODO: erosketak-->
+            </div>
+            <div class="vflex accountbento">
+                <div class="bento">
+                    <a><h3>Zure datuak</h3></a>
+                    <p>{{ bezeroa.emaila }}</p>
+                    <p>{{ bezeroa.telefonoa }}</p>
+                    {% if bezeroa.txartela == none %}
+                        <p>ez duzu txartelik</p>
+                    {% else %}
+                        <p>{{ bezeroa.txartela }}</p>
+                    {% endif %}
+                    {% if bezeroa.helbidea == none %}
+                        <p>ez duzu helbiderik</p>
+                    {% else %}
+                        <h5>Helbidea</h5>
+                        <p>{{ bezeroa.izena }} {{ bezeroa.abizena }}</p>
+                        <p>{{ bezeroa.helbidea }}</p>
+                        <p>{{ bezeroa.posta_kodea }} {{ bezeroa.herria }}</p>
+                    {% endif %}
+                    <a href="/kontua/aldatu/">Aldatu</a>
+                </div>
+                <a href="/plus/" class="notd">
+                    <div class="adweedeliverplus bento pluscolors">
+                        <h3>Doako bidalketa nahi?</h3>
+                        <p>Probatu WeeDeliver Plus</p>
+                        <p>4.99€/hilabete</p>
+                        <span>-></span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     {% include "elements/footer.html" %}

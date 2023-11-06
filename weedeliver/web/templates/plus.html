@@ -1,0 +1,62 @@
+{% load static %}
+{% load math_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Harpidetza - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <h3 class="hflextitle plustitle">Zure harpidetza</h3>
+        <h4>WeeDeliver {{ bezeroa.harpidetza }} bazkidea zara.</h4>
+        {% if bezeroa.txartela == none %}
+            <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak WeeDeliver Plus erosteko</div>
+        {% endif %}
+        <div class="hflex pluscards">
+            <div class="pluscard">
+                <h3>WeeDeliver basic</h3>
+                <p>Bidalketa 1.99€tik hasita</p>
+                <p>Deskontu gabe</p>
+                <div class="btm">
+                    <h4>Doan</h4>
+                    {% if bezeroa.harpidetza == "basic" %}
+                        Hau duzu.
+                    {% else %}
+                        <form action="/harpidetza/erostea" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="harpidetza" value="basic">
+                            <input type="submit" class="btn upgradebtn" value="Harpidetu">
+                        </form>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="pluscard pluscolors">
+                <h3>WeeDeliver Plus</h3>
+                <p>Doako bidalketak</p>
+                <p>Deskontu bereziak</p>
+                <div class="btm">
+                    <h4>4.99€/hilabete</h4>
+                    {% if bezeroa.harpidetza == "plus" %}
+                        Hau duzu.
+                    {% elif bezeroa.txartela == none %}
+                        <input type="submit" class="btn upgradebtn" value="Harpidetu">
+                    {% else %}
+                        <form action="/harpidetza/erostea" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="harpidetza" value="plus">
+                            <input type="submit" class="btn upgradebtn" value="Harpidetu">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>
