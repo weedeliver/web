@@ -14,19 +14,20 @@
         <h3 class="hflextitle plustitle">Zure harpidetza</h3>
         <h4>WeeDeliver {{ bezeroa.harpidetza }} bazkidea zara.</h4>
         {% if bezeroa.txartela == none %}
-            <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak WeeDeliver Plus erosteko</div>
+            <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak zure harpidetza kudeatzeko</div>
         {% endif %}
         <div class="hflex pluscards">
             <div class="pluscard">
                 <h3>WeeDeliver basic</h3>
                 <p>Bidalketa 1.99€tik hasita</p>
                 <p>Deskontu gabe</p>
+                <p>Bidalketa normala</p>
                 <div class="btm">
                     <h4>Doan</h4>
                     {% if bezeroa.harpidetza == "basic" %}
                         Hau duzu.
-                    {% else %}
-                        <form action="/harpidetza/erostea" method="POST">
+                    {% elif bezeroa.txartela != none %}
+                        <form action="/harpidetza/erosi/" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="harpidetza" value="basic">
                             <input type="submit" class="btn upgradebtn" value="Harpidetu">
@@ -39,17 +40,36 @@
             <div class="pluscard pluscolors">
                 <h3>WeeDeliver Plus</h3>
                 <p>Doako bidalketak</p>
-                <p>Deskontu bereziak</p>
+                <p>Deskontu batzuk</p>
+                <p>Bidalketa normala</p>
                 <div class="btm">
                     <h4>4.99€/hilabete</h4>
                     {% if bezeroa.harpidetza == "plus" %}
                         Hau duzu.
-                    {% elif bezeroa.txartela == none %}
-                        <input type="submit" class="btn upgradebtn" value="Harpidetu">
-                    {% else %}
-                        <form action="/harpidetza/erostea" method="POST">
+                    {% elif bezeroa.txartela != none %}
+                        <form action="/harpidetza/erosi/" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="harpidetza" value="plus">
+                            <input type="submit" class="btn upgradebtn" value="Harpidetu">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="pluscard vipcolors">
+                <h3>WeeDeliver VIP</h3>
+                <p>Doako bidalketak</p>
+                <p>Deskontu bereziak</p>
+                <p>Ferrari bidezko bidalketa</p>
+                <p>WeeDeliver Fest All Access</p>
+                <div class="btm">
+                    <h4>39.99€/hilabete</h4>
+                    {% if bezeroa.harpidetza == "VIP" %}
+                        Hau duzu.
+                    {% elif bezeroa.txartela != none %}
+                        <form action="/harpidetza/erosi/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="harpidetza" value="VIP">
                             <input type="submit" class="btn upgradebtn" value="Harpidetu">
                         </form>
                     {% endif %}

@@ -358,6 +358,32 @@ footer p {
   font-size: 20px;
 }
 
+.minusplus {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 10px 0;
+    border-radius: 100px;
+    background: #D9D9D9;
+    color:black;
+    font-weight: 500;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    border:none;
+}
+
+.minusplus:hover {
+    background: #C4C4C4;
+}
+
+#kantitatea {
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: 500;
+
+}
+
 
 /*KONTAKTUA*/
 
@@ -470,6 +496,16 @@ footer p {
     margin-left: 25px;
 }
 
+.rolebadge {
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
 
 /*PLUS*/
 .adweedeliverplus p {
@@ -536,6 +572,10 @@ footer p {
 
 .pluscolors {
     background: linear-gradient(105deg, #A0FAB4 0%, #ABFAFF 72.8%, #ADA0FA 100%);
+}
+
+.vipcolors {
+    background: linear-gradient(105deg, #F6E58C 0%, #E7D185 30.21%, #FFF 61.98%, #FAEBA0 78.12%, #FAEBA0 100%);
 }
 
 .btm {

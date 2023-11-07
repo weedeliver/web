@@ -17,19 +17,31 @@ def index(request):
 def produktuak(request):
     produktuak = Produktua.objects.all()
     kategoriak = Kategoria.objects.all()
-    return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak})
+    if request.user.is_authenticated:
+        user = request.user
+        bezeroa = Bezeroa.objects.get(user=user)
+        return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak, 'bezeroa': bezeroa})
+    else:
+        return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak})
 
 
 def produktuak_kategoria(request, cat):
     produktuak = Produktua.objects.filter(izena=cat)
     kategoriak = Kategoria.objects.all()
     aukeratutako_kategoria = Kategoria.objects.get(izena=cat)
-    return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak, 'aukeratutako_kategoria': aukeratutako_kategoria})
+    if request.user.is_authenticated:
+        user = request.user
+        bezeroa = Bezeroa.objects.get(user=user)
+        return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak, 'aukeratutako_kategoria': aukeratutako_kategoria, 'bezeroa': bezeroa})
+    else:
+        return render(request, 'produktuak.html', {'produktuak': produktuak, 'kategoriak': kategoriak, 'aukeratutako_kategoria': aukeratutako_kategoria})
 
 
 def produktua(request, pid):
     produktua = Produktua.objects.get(id=pid)
     kategoriak = Produktua.objects.filter(id=pid).values('kategoria__izena')
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
     return render(request, 'produktua.html', {'produktua': produktua, 'kategoriak': kategoriak})
 
 
@@ -86,10 +98,18 @@ def logout_view(request):
     return HttpResponseRedirect(reverse('index'))
 
 
+@login_required
 def kontua(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
     return render(request, 'kontua.html', {'bezeroa': bezeroa})
+
+
+@login_required
+def kontua_aldatu(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    return render(request, 'kontua_aldatu.html', {'bezeroa': bezeroa})
 
 
 def plus(request):
@@ -97,3 +117,38 @@ def plus(request):
     bezeroa = Bezeroa.objects.get(user=user)
     return render(request, 'plus.html', {'bezeroa': bezeroa})
 
+
+@login_required
+def harpidetu(request):
+    harpidetza = request.POST['harpidetza']
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    bezeroa.harpidetza = harpidetza
+    bezeroa.save()
+    return render(request, 'kontua.html', {'bezeroa': bezeroa, 'planberria': harpidetza})
+
+
+@login_required
+def kontua_aldaketak_gorde(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    # get the data
+    izena = request.POST['izena']
+    abizena = request.POST['abizena']
+    emaila = request.POST['email']
+    telefonoa = request.POST['telefonoa']
+    helbidea = request.POST['helbidea']
+    herria = request.POST['herria']
+    posta_kodea = request.POST['posta_kodea']
+    txartela = request.POST['txartela']
+    # update bezeroa
+    bezeroa.izena = izena
+    bezeroa.abizena = abizena
+    bezeroa.emaila = emaila
+    bezeroa.telefonoa = telefonoa
+    bezeroa.helbidea = helbidea
+    bezeroa.herria = herria
+    bezeroa.posta_kodea = posta_kodea
+    bezeroa.txartela = txartela
+    bezeroa.save()
+    return render(request, 'kontua.html', {'bezeroa': bezeroa})

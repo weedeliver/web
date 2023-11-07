@@ -17,5 +17,8 @@ urlpatterns = [
     path('login/auth/', views.auth, name='auth'),
     path('logout/', views.logout_view, name='logout'),
     path('kontua/', views.kontua, name='kontua'),
-    path('plus/', views.plus, name='plus'),
+    path('kontua/aldatu/', views.kontua_aldatu, name='kontua_aldatu'),
+    path('kontua/aldatu/gorde/', views.kontua_aldaketak_gorde, name='kontua_aldaketak_gorde'),
+    path('harpidetu/', views.plus, name='plus'),
+    path('harpidetza/erosi/', views.harpidetu, name='minus'),
 ]

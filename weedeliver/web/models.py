@@ -15,15 +15,24 @@ class Bezeroa(models.Model):
     txartela = models.IntegerField(null=True)
     harpidetza = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.izena + " " + self.abizena
+
 
 class Kategoria(models.Model):
     izena = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.izena
 
 
 class Deskontua(models.Model):
     izena = models.CharField(max_length=100)
     kantitatea = models.IntegerField()
     isEhunekoa = models.BooleanField()
+
+    def __str__(self):
+        return self.izena
 
 
 class Produktua(models.Model):
@@ -34,14 +43,22 @@ class Produktua(models.Model):
     deskontua = models.ForeignKey(Deskontua,on_delete=models.CASCADE)
     img = models.ImageField(upload_to='web/static/irudiak/produktuak/')
 
+    def __str__(self):
+        return self.izena
+
 
 class Erosketa(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
     produktuak = models.ManyToManyField(Produktua)
     data = models.DateTimeField(auto_now_add=True)
+    totala = models.FloatField()
+
+
+class Saskia_item(models.Model):
+    produktua = models.ForeignKey(Produktua,on_delete=models.CASCADE)
+    kantitatea = models.IntegerField()
 
 
 class Saskia(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
-    produktuak = models.ManyToManyField(Produktua)
-
+    saskia_items = models.ManyToManyField(Saskia_item)

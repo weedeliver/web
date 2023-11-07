@@ -8,6 +8,7 @@
     </div>
     <div id="navr">
         {% if user.is_authenticated %}
+            <a href="/saskia"> <img alt="saskia" src="{% static "irudiak/webimg/icons/shopping_cart.svg" %}"> </a>
             <a href="/kontua"> {{ user.username }} -></a>
         {% else %}
             <a href="/signup"> Sortu kontua </a>

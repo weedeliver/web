@@ -55,7 +55,11 @@
                                 <span class="strike">{{ produktua.prezioa|floatformat:2 }}€</span>
                                 {{ produktua.prezioa|sub:produktua.deskontua.kantitatea|floatformat:2}}€
                             {% endif %}
+                        {% if bezeroa.harpidetza == "plus" or bezeroa.harpidetza == "VIP" %}
+                            <span class="deetsbidalketa strike"> +bidalketa</span>
+                        {% else %}
                             <span class="deetsbidalketa"> +bidalketa</span>
+                        {% endif %}
                         </span>
                     </div>
                     <a href="/produktua/{{ produktua.id }}/">

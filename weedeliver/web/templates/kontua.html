@@ -13,6 +13,11 @@
     <div class="global">
         <div class="hflex">
             <h3 class="hflextitle">Kaixo, {{ bezeroa.izena }}!</h3>
+            {% if bezeroa.harpidetza == "plus" %}
+                <div class="pluscolors rolebadge">PLUS</div>
+                {% elif bezeroa.harpidetza == "VIP" %}
+                <div class="vipcolors rolebadge">VIP</div>
+            {% endif %}
             <a class="hflextitle" href="/logout/">itxi saioa</a>
         </div>
         <div class="hflex">
@@ -23,6 +28,7 @@
                 <h4>Zure erosketak</h4>
                 <!--TODO: erosketak-->
             </div>
+        <!--Bento bat informazio ezberdinarekin-->
             <div class="vflex accountbento">
                 <div class="bento">
                     <a><h3>Zure datuak</h3></a>
@@ -43,13 +49,29 @@
                     {% endif %}
                     <a href="/kontua/aldatu/">Aldatu</a>
                 </div>
-                <a href="/plus/" class="notd">
+                <!--Harpidetzaren arabera aldatzen da-->
+                <a href="/harpidetu/" class="notd">
+                    {% if bezeroa.harpidetza == "basic" %}
                     <div class="adweedeliverplus bento pluscolors">
                         <h3>Doako bidalketa nahi?</h3>
                         <p>Probatu WeeDeliver Plus</p>
                         <p>4.99€/hilabete</p>
                         <span>-></span>
                     </div>
+                    {% elif bezeroa.harpidetza == "plus" %}
+                    <div class="adweedeliverplus bento vipcolors">
+                        <h3>Esperientzia onena nahi?</h3>
+                        <p>Probatu WeeDeliver VIP</p>
+                        <p>39.99€/hilabete</p>
+                        <span>-></span>
+                    </div>
+                    {% elif bezeroa.harpidetza == "VIP" %}
+                    <div class="adweedeliverplus bento vipcolors">
+                        <h3>VIP bat zara</h3>
+                        <p>Kudeatu zure harpidetza</p>
+                        <span>-></span>
+                    </div>
+                    {% endif %}
                 </a>
             </div>
         </div>
