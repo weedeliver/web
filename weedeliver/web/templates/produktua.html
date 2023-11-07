@@ -42,7 +42,7 @@
             <h5>Deskribapena</h5>
             <p>{{ produktua.deskribapena }}</p>
             {% if user.is_authenticated %}
-                <form action="/produktuak/{{ produktua.id }}/gehitu" method="POST">
+                <form action="/produktua/{{ produktua.id }}/gehitu/" method="POST">
                     {% csrf_token %}
                     <div class="hflex">
                         <div class="produktuakantitatea">

@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from web.models import Produktua, Kategoria, Bezeroa
+from web.models import Produktua, Kategoria, Bezeroa, Saskia, SaskiaItem
 
 
 # Create your views here.
@@ -152,3 +152,39 @@ def kontua_aldaketak_gorde(request):
     bezeroa.txartela = txartela
     bezeroa.save()
     return render(request, 'kontua.html', {'bezeroa': bezeroa})
+
+
+def saskia_view(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    saskia = Saskia.objects.filter(bezeroa=bezeroa).first()
+    items = SaskiaItem.objects.filter(saskia=saskia)
+    return render(request, 'saskia.html', {'items': items, 'bezeroa': bezeroa})
+
+
+def saskira_gehitu(request, pid):
+    produktua_obj = Produktua.objects.get(id=pid)
+    kantitatea = int(request.POST['kantitatea'])
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    saskia = Saskia.objects.filter(bezeroa=bezeroa).first()
+
+    # Saski bat sortu ez bada existitzen
+    if saskia is None:
+        saskia = Saskia()
+        saskia.bezeroa = bezeroa
+        saskia.save()
+
+    duplicate_item = saskia.saskia_items.filter(produktua=produktua_obj, saskia=saskia).first()
+    if duplicate_item is not None:
+        duplicate_item.kantitatea += kantitatea
+        duplicate_item.save()
+    else:
+        saskia_item = SaskiaItem()
+        saskia_item.produktua = produktua_obj
+        saskia_item.kantitatea = kantitatea
+        saskia_item.saskia = saskia
+        saskia_item.save()
+        saskia.saskia_items.add(saskia_item)
+
+    return HttpResponseRedirect(reverse('saskia'))

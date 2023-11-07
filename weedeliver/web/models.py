@@ -53,12 +53,21 @@ class Erosketa(models.Model):
     data = models.DateTimeField(auto_now_add=True)
     totala = models.FloatField()
 
+    def __str__(self):
+        return self.bezeroa.izena + " " + self.bezeroa.abizena + " " + str(self.data)
 
-class Saskia_item(models.Model):
+
+class SaskiaItem(models.Model):
     produktua = models.ForeignKey(Produktua,on_delete=models.CASCADE)
     kantitatea = models.IntegerField()
+    saskia = models.ForeignKey('Saskia',on_delete=models.CASCADE,related_name='saskia_items')
+
+    def __str__(self):
+        return self.produktua.izena + " x" + str(self.kantitatea)
 
 
 class Saskia(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
-    saskia_items = models.ManyToManyField(Saskia_item)
+
+    def __str__(self):
+        return self.bezeroa.izena + " " + self.bezeroa.abizena

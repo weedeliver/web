@@ -16,3 +16,10 @@ def percent(value, arg):
     arg = float(arg)
     arg = 100 - arg
     return value * arg / 100
+
+
+@register.filter(name='multiply')
+def multiply(value, arg):
+    value = float(value)
+    arg = float(arg)
+    return value * arg
