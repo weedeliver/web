@@ -1,3 +1,4 @@
+{% load math_filters %}
 {% load static %}
 <html lang="en">
 <head>
@@ -12,9 +13,13 @@
     <div class="global">
         <h3>Saskia</h3>
         {% for item in items %}
-            {{ item.produktua.izena }}
-            {{ item.kantitatea }}
-            {{ item.produktua.prezioa }}
+            <div class="saskiaproduktua">
+                <img src="../{{ item.produktua.img|cut:'web/' }}">
+                <span>{{ item.produktua.izena }}</span>
+                <span>{{ item.kantitatea }}</span>
+                <span>{{ item.produktua.prezioa }}€</span>
+                <span>{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
+            </div>
         {% endfor %}
     </div>
     {% include "elements/footer.html" %}

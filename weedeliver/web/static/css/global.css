@@ -581,3 +581,21 @@ footer p {
 .btm {
     text-align: center;
 }
+
+
+/*SASKIA*/
+
+.saskiaproduktua {
+    display: flex;
+    margin: 0 0 20px;
+    width: 100%;
+    background: #DADADA;
+    border-radius: 10px;
+}
+
+.saskiaproduktua img {
+    height: 70px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
