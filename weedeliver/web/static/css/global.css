@@ -73,12 +73,23 @@ nav a {
     line-height: 50px;
 }
 
+.navsaskia {
+    height: 30px;
+    margin: 0;
+}
+
 .navlogin {
     padding: 0 15px;
 }
 
 .navlogin:hover {
     color:white;
+}
+
+.navr {
+    display:flex;
+    flex-direction:row;
+
 }
 
 footer {
@@ -572,6 +583,10 @@ footer p {
     color: white;
 }
 
+.stdcolors {
+    background: #DADADA;
+}
+
 .pluscolors {
     background: linear-gradient(105deg, #A0FAB4 0%, #ABFAFF 72.8%, #ADA0FA 100%);
 }
@@ -593,6 +608,8 @@ footer p {
     width: 100%;
     background: #DADADA;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .saskiaproduktua img {
@@ -600,4 +617,55 @@ footer p {
     width: 120px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+
+.saskiaizena {
+font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+    color: #1a1a1a;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 10px;
+}
+
+.saskiaizena h4 {
+    margin:0 0 5px;
+    font-size: 20px;
+}
+
+.saskiakantitatea {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.saskiaprezioa {
+    margin: 0 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.saskiabidalketa {
+    display: flex;
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+
+.saskiabento {
+    gap: 10px;
+}
+
+.bentoh {
+    flex:1;
+}
+
+.bentoguztira {
+    text-align: right;
 }

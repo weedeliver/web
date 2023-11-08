@@ -14,13 +14,62 @@
         <h3>Saskia</h3>
         {% for item in items %}
             <div class="saskiaproduktua">
-                <img src="../{{ item.produktua.img|cut:'web/' }}">
-                <span>{{ item.produktua.izena }}</span>
-                <span>{{ item.kantitatea }}</span>
-                <span>{{ item.produktua.prezioa }}€</span>
-                <span>{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
+                <img src="../{{ item.produktua.img|cut:'web/' }}" alt="{{ item.produktua.izena }}">
+                <div class="saskiaizena">
+                    <h4>{{ item.produktua.izena }}</h4>
+                    <span>{{ item.produktua.prezioa }}€</span>
+                </div>
+                <div>
+                    <span class="saskiakantitatea">{{ item.kantitatea }}</span>
+                </div>
+                <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
             </div>
         {% endfor %}
+
+        {% if bezeroa.harpidetza == "basic" %}
+            <div class="saskiabidalketa stdcolors">
+                <span class="flex1">Bidalketa</span>
+                <span>3.99€</span>
+            </div>
+        {% else %}
+            <div class="saskiabidalketa pluscolors">
+                <span class="flex1">Bidalketa</span>
+                <span><span class="strike">3.99€</span> 0.00€</span>
+            </div>
+        {% endif %}
+        <div class="hflex saskiabento">
+            <div class="bento bentoh">
+                <h3>Hona bidali</h3>
+                <p>{{ bezeroa.izena }} {{ bezeroa.abizena }}</p>
+                <p>{{ bezeroa.helbidea }}</p>
+                <p>{{ bezeroa.posta_kodea }} {{ bezeroa.herria }}</p>
+            </div>
+            {% if bezeroa.harpidetza == "basic" %}
+                <div class="adweedeliverplus bento bentoh pluscolors">
+                    <h3>Doako bidalketa nahi?</h3>
+                    <p>Probatu WeeDeliver Plus</p>
+                    <p>4.99€/hilabete</p>
+                    <span>-></span>
+                </div>
+            {% elif bezeroa.harpidetza == "plus" %}
+                <div class="adweedeliverplus bento bentoh vipcolors">
+                    <h3>Ferrari bidezko bidalketa nahi?</h3>
+                    <p>Eskuratu WeeDeliver VIP</p>
+                    <p>39.99€/hilabete</p>
+                    <span>-></span>
+                </div>
+            {% else %}
+                <div class="adweedeliverplus bento bentoh vipcolors">
+                    <h3>VIP bat zara</h3>
+                    <p>Zure eskaera Ferrari bidez iritsiko da</p>
+                    <p>Eskerrik asko VIP aukeratzeagatik</p>
+                    <span>-></span>
+                </div>
+            {% endif %}
+            <div class="bento bentoh bentoguztira">
+
+            </div>
+        </div>
     </div>
     {% include "elements/footer.html" %}
 </body>
