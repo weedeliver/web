@@ -1,3 +1,4 @@
+import random
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,14 +9,16 @@ from .models import Bezeroa,Kategoria,Produktua,Deskontua,Erosketa,Karrito,Karri
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    return render(request, 'home.html')
 
 def kontaktua(request):
+
     return render(request,'kontaktua.html')
 
 def produktuak(request):
     produktuak = Produktua.objects.all()
     kategoriak = Kategoria.objects.all()
+
     return render(request,'produktuak.html',{"produktuak":produktuak,"kategoriak":kategoriak})
 
 def login_view(request):
@@ -63,6 +66,7 @@ def kontua_sortu(request):
 def profila(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
+
     return render(request,'profila.html',{"bezeroa": bezeroa})
 
 
@@ -76,7 +80,9 @@ def karrito_view(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
     karrito = Karrito.objects.filter(bezeroa=bezeroa).first()
-    return render(request,'karrito.html',{"karrito":karrito})
+    items = KarritoItem.objects.filter(karrito=karrito)
+
+    return render(request,'karrito.html',{"items":items,"karrito":karrito})
 
 @login_required
 def karritora_gehitu(request):
@@ -94,26 +100,91 @@ def karritora_gehitu(request):
             print("Karrito berria sortu da produktuarekin")
 
     ##Gehitu beharreko produktua aurkitu
-    existing_item = karrito.karrito_itemak.filter(produktua=produktua).first()
+    existing_item = KarritoItem.objects.filter(produktua=produktua,karrito=karrito).first()
     ##Produktua karritoan badago unitate bat gehiago gehitu
     if existing_item:
         existing_item.unitateak += 1
         existing_item.save()
     else:
-        item = KarritoItem(produktua=produktua, unitateak=1)
+        item = KarritoItem(produktua=produktua, unitateak=1,karrito=karrito)
         item.save()
-        karrito.karrito_itemak.add(item)
+        item.karrito = karrito
+
+    return JsonResponse({'success': True})
+
+@login_required
+def karritotik_kendu(request):
+    product_id = request.POST['product_id']
+    produktua = Produktua.objects.get(id=product_id)
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    karrito = Karrito.objects.filter(bezeroa=bezeroa).first()
+
+    ##Gehitu beharreko produktua aurkitu
+    existing_item = KarritoItem.objects.filter(produktua=produktua,karrito=karrito).first()
+    ##Produktua karritoan badago unitate bat gehiago gehitu
+    if existing_item and existing_item.unitateak > 0:
+        existing_item.unitateak -= 1
+        existing_item.save()
 
     return JsonResponse({'success': True})
 
 @login_required
 def karritotik_ezabatu(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    karrito = Karrito.objects.filter(bezeroa=bezeroa).first()
     item_id = request.POST['item_id']
     ##Sortutako itema ezabatu
-    item = KarritoItem.objects.get(id=item_id)
+    item = KarritoItem.objects.get(id=item_id,karrito=karrito)
     item.delete()
 
 
     return JsonResponse({'success': True})
+
+def karritoko_unitateak(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    karrito = Karrito.objects.filter(bezeroa=bezeroa).first()
+
+    unitateak = KarritoItem.objects.count()
+
+    return JsonResponse({'cart_count': unitateak})
+
+@login_required
+def erosketa_egin(request):
+    user = request.user
+    bez = Bezeroa.objects.get(user=user)
+    
+    karrito = Karrito.objects.filter(bezeroa=bez).first()
+
+    ##PRODUKTUAK GORDETZEKO
+    guz = 0
+    produktuak = []
+    items = KarritoItem.objects.filter(karrito=karrito)
+    for i in items:
+        produktua = i.produktua
+        produktuak.append(produktua)
+        guz = guz + (i.unitateak * i.produktua.prezioa) 
+    
+    erosketa = Erosketa()
+    erosketa.bezeroa = bez
+    erosketa.guztira = guz
+    erosketa.save()  # Save the Erosketa object before setting the many-to-many relationship
+
+    # Now, set the many-to-many relationship
+    erosketa.produktuak.set(produktuak)
+
+    ##Karritoa eta itemak ezabatu
+    karrito.delete()
+    items.delete()
+    return HttpResponseRedirect(reverse('home'))
+
+def gomendioak(request):
+    produktuak = list(Produktua.objects.all())
+    random_produktuak = random.sample(produktuak,10)
+
+    data = [{"name": produktua.izena, "image": produktua.img.url} for produktua in random_produktuak]
+    return JsonResponse(data, safe=False)
 
     

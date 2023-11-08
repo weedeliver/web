@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="wrapper">
         <!--Navbar-->
         <div>
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "img/logob.svg" %}' class="logo">
+                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
@@ -27,7 +27,7 @@
   
                     {% if user.is_authenticated %}
                     <div>
-                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/karrito" id="unitateak">(0)</a></li>
                         <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
                     {% else %}
@@ -60,12 +60,12 @@
                         <input type="text" name="telefonoa">
                     </div>
                     <div>
-                        <img src='{% static "img/monkeys.svg" %}' class="monkeys">
+                        <img src='{% static "irudiak/monkeys.svg" %}' class="monkeys">
                     </div>
                 </div>
                <div class="form-bottom">
                     <label for="mezua">Mezua</label>
-                    <input type="text" name="mezua" class="mezua">
+                    <textarea name="mezua" class="mezua"></textarea>
                     <button type="submit" class="bidali">Bidali</button>
                </div>
             </form>
@@ -73,10 +73,9 @@
         
 
         <!--Footer-->
-        <div>
             <footer>
                 <div>
-                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -94,14 +93,31 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "img/instagram-icon.svg" %}'>
-                        <img src='{% static "img/facebook-icon.svg" %}'>
-                        <img src='{% static "img/x-icon.svg" %}'>
+                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
+                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
+                        <img src='{% static "irudiak/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
-        </div>
+
     </div>
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Karritoko unitateak
+        $.ajax({
+            url: "{% url 'karritoko_unitateak' %}",  // Replace with the actual URL to fetch the cart count
+            type: 'GET',
+            success: function (data) {
+                // Update the HTML element with the new count
+                $('#unitateak').text('(' + data.cart_count + ')');
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
+    })
+</script>
 </html>

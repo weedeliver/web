@@ -13,9 +13,10 @@
 </head>
 
 <body>
+    <div class="wrapper">
        <!--Form login -->
         <div class="formularioa">
-            <div><img src='{% static "img/logog.svg" %}'></div>
+            <div><img src='{% static "irudiak/logog.svg" %}'></div>
                 <form action="kontuaSortu/" method="POST">
                         {% csrf_token %}
                         <div class="custom-input">
@@ -69,10 +70,10 @@
         
 
         <!--Footer-->
-        <div>
+
             <footer>
                 <div>
-                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -90,13 +91,12 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "img/instagram-icon.svg" %}'>
-                        <img src='{% static "img/facebook-icon.svg" %}'>
-                        <img src='{% static "img/x-icon.svg" %}'>
+                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
+                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
+                        <img src='{% static "irudiak/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
-        </div>
     </div>
 </body>
 

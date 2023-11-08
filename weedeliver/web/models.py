@@ -14,11 +14,15 @@ class Bezeroa(models.Model):
     txartela = models.IntegerField(null=True)
     harpidetza = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.izena
 
 class Kategoria(models.Model):
     izena = models.CharField(max_length=100)
 
-
+    def __str__(self):
+        return self.izena
+    
 class Deskontua(models.Model):
     izena = models.CharField(max_length=100)
     kantitatea = models.IntegerField()
@@ -32,6 +36,9 @@ class Produktua(models.Model):
     deskontua = models.ForeignKey(Deskontua,on_delete=models.CASCADE)
     img = models.ImageField(upload_to='web/static/irudiak/produktuak/')
 
+    def __str__(self):
+        return self.izena
+
 
 class Erosketa(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
@@ -39,11 +46,17 @@ class Erosketa(models.Model):
     guztira = models.FloatField()
     data = models.DateTimeField(auto_now_add=True)
 
-class KarritoItem(models.Model):
-    produktua = models.ForeignKey(Produktua,on_delete=models.CASCADE)
-    unitateak = models.IntegerField()
+    def __str__(self):
+        return self.bezeroa.izena
 
 class Karrito(models.Model):
     bezeroa = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
-    karrito_itemak = models.ManyToManyField(KarritoItem)
+
+class KarritoItem(models.Model):
+    produktua = models.ForeignKey(Produktua,on_delete=models.CASCADE)
+    unitateak = models.IntegerField()
+    karrito = models.ForeignKey(Karrito,on_delete=models.CASCADE)
+
+
+
 

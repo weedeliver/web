@@ -16,13 +16,13 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="wrapper">
         <!--Navbar-->
         <div>
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "img/logob.svg" %}' class="logo">
+                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
@@ -30,7 +30,7 @@
   
                     {% if user.is_authenticated %}
                     <div>
-                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/karrito" id="unitateak">(0)</a></li>
                         <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
                     {% else %}
@@ -62,6 +62,7 @@
                 <div class="product-indib">
                     <div>
                         <img src="../{{ produktua.img|cut:'web/' }}">
+                        
                     </div>
                     <div class="product-info">
                         <div>
@@ -79,10 +80,10 @@
         </div>
 
         <!--Footer-->
-        <div>
+   
             <footer>
                 <div>
-                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
                 </div>
 
                 <div class="footer-content">
@@ -100,13 +101,13 @@
     
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "img/instagram-icon.svg" %}'>
-                        <img src='{% static "img/facebook-icon.svg" %}'>
-                        <img src='{% static "img/x-icon.svg" %}'>
+                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
+                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
+                        <img src='{% static "irudiak/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
-        </div>
+       
     </div>
 </body>
 
@@ -114,6 +115,19 @@
 <script>
 $(document).ready(function () {
     $("#incorrect").hide()
+
+    //Karritoko unitateak
+    $.ajax({
+        url: "{% url 'karritoko_unitateak' %}",  // Replace with the actual URL to fetch the cart count
+        type: 'GET',
+        success: function (data) {
+            // Update the HTML element with the new count
+            $('#unitateak').text('(' + data.cart_count + ')');
+        },
+        error: function (xhr, status, error) {
+            console.log("Error: " + error);
+        }
+    });
 
     //Karritora gehitu
     $(".gehitu").on('click',function(e) {
@@ -126,14 +140,12 @@ $(document).ready(function () {
             url: "{% url 'karritora_gehitu' %}",
             data: datuak,  // Pass datuak directly as the data
             success: function(response){
-                
+                window.location.reload();
             },error: function (response) {
                 
             }
         })
     })
-
-    
 })
 </script>
 

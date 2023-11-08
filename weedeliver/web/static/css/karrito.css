@@ -1,0 +1,86 @@
+.karrito{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.karrito-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    background-color: rgb(236, 236, 236);
+    border-radius: 5px;
+}
+
+.karrito-item img{
+    border-radius: 5px;
+    margin-right: 2em;
+}
+
+.karrito-item div{
+    display: flex;
+    flex-direction: row;
+    margin-right: 2em;
+}
+
+.karrito-item div a{
+    margin-right: 1em;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    margin-top: 1.5em;
+}
+
+.karrito-item div p{
+    margin-top: 2.15em;
+}
+
+.karrito-item div a:hover{
+    color: #30C150;
+}
+
+.unitateak{
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 1em;
+    background-color: white;
+}
+
+.karrito-item img{
+    width: 100px;
+    height: 100px;
+}
+
+.erosi{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.erosi button{
+    background-color: black;
+    color: white;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 0.25em;
+    box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
+    transition: all 0.2s ease-in-out;
+    width: 100px;
+}
+
+.erosi button:hover{
+    box-shadow: rgba(0, 0, 0, 0.31) 6px 6px 0;
+    transform: translate(-2px, -2px);
+}
+
+.delete img{
+    width: 25px;
+    height: 25px;
+    margin-top: 0.25em;
+}
+

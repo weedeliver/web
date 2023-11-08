@@ -45,8 +45,8 @@ class KarritoAdmin(admin.ModelAdmin):
 admin.site.register(Karrito,KarritoAdmin)
 
 class KarritoItemAdmin(admin.ModelAdmin):
-    list_display = ['produktua','unitateak']
-    list_filter = ['produktua','unitateak']
+    list_display = ['produktua','unitateak','karrito']
+    list_filter = ['produktua','unitateak','karrito']
     search_fields = ['produktua','unitateak']
 
 admin.site.register(KarritoItem,KarritoItemAdmin)

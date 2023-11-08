@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_filters %}
 
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='{% static "css/general.css" %}'>
-    <link rel="stylesheet" href='{% static "css/produktuak.css" %}'>
+    <link rel="stylesheet" href='{% static "css/karrito.css" %}'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -16,13 +17,13 @@
 </head>
 
 <body>
-    <div class="">
+    <div class="wrapper">
         <!--Navbar-->
         <div>
             <nav>
                 <ul>
                     <div class="">
-                        <img src='{% static "img/logob.svg" %}' class="logo">
+                        <img src='{% static "irudiak/logob.svg" %}' class="logo">
                         <li><a href="/">Hasiera</a></li>
                         <li><a href="/produktuak">Produktuak</a></li>
                         <li><a href="/kontaktua">Kontaktua</a></li>
@@ -30,7 +31,7 @@
   
                     {% if user.is_authenticated %}
                     <div>
-                        <li><a href="/karrito">(0)</a></li>
+                        <li><a href="/karrito" id="unitateak">(0)</a></li>
                         <li><a href="/profila">{{ user.username }}</a></li>       
                     </div>
                     {% else %}
@@ -45,58 +46,98 @@
         </div>
 
         <!--Karrito-->
-        <div>
-            {% if karrito %}
-                <h2>Karritoa existitzen da</h2>
-                {% for item in karrito.karrito_itemak.all %}
-                <p>{{item.produktua.izena}}</p>
-                <p>{{item.unitateak}}</p>
-                <a href="#" class="delete" id="{{item.id}}">Ezabatu</a>
+        {% if karrito %}
+        <form action="erosketa/" method="POST">
+            {% csrf_token%}
+            <div class="karrito">
+                <h2>Karritoa</h2>
+                {% with total_cost=0 %}
+                {% for item in items %}
+                <div class="karrito-item">
+                    <div>
+                        <img src="../{{ item.produktua.img|cut:'web/' }}">
+                        <p>{{ item.produktua.izena }}</p>
+                    </div>
+                    <div>
+                        <a href="" id="{{ item.produktua.id }}" class="kendu">-</a>
+                        <p class="unitateak" name="units">{{ item.unitateak }}</p>
+                        <a href="" id="{{ item.produktua.id }}" class="gehitu">+</a>
+                        <a href="#" class="delete" id="{{ item.id }}"><img src='{% static "irudiak/eliminar.png" %}'></a>
+                        <p>{{ item.unitateak|multiply:item.produktua.prezioa|floatformat:2 }}€</p>
+                    </div>
+                </div>
                 {% endfor %}
-            {% else %}
-                <h2>Karritoa hutsik dago</h2>
-            {% endif %}
-        </div>
+                <div class="erosi">
+                    <p name="guztira" id="guztira">Guztira: {{ items|kalkulatu_guztira }} €</p>
+                    <button type="submit">Erosi</button>
+                </div>
+            </div>
+            {% endwith %}
+        </form>
+        {% else %}
+        <h2>Karritoa hutsik dago</h2>
+        {% endif %}
+
 
         <!--Footer-->
-        <div>
             <footer>
                 <div>
-                    <img src='{% static "img/logow.svg" %}' class="footer-logo">
+                    <img src='{% static "irudiak/logow.svg" %}' class="footer-logo">
                 </div>
-
+            
                 <div class="footer-content">
                     <div>
                         <h3>WeeDeliver</h3>
-                        <a><p>WeeDeliver-i buruz</p></a>
-                        <a><p>WeeDeliver fundazioa</p></a>
+                        <a>
+                            <p>WeeDeliver-i buruz</p>
+                        </a>
+                        <a>
+                            <p>WeeDeliver fundazioa</p>
+                        </a>
                     </div>
-    
+            
                     <div>
                         <h3>Produktuak</h3>
-                        <a><p>Produktuei buruz</p></a>
-                        <a><p>Produktu guztiak</p></a>
+                        <a>
+                            <p>Produktuei buruz</p>
+                        </a>
+                        <a>
+                            <p>Produktu guztiak</p>
+                        </a>
                     </div>
-    
+            
                     <div>
                         <h3>Sare Sozialak</h3>
-                        <img src='{% static "img/instagram-icon.svg" %}'>
-                        <img src='{% static "img/facebook-icon.svg" %}'>
-                        <img src='{% static "img/x-icon.svg" %}'>
+                        <img src='{% static "irudiak/instagram-icon.svg" %}'>
+                        <img src='{% static "irudiak/facebook-icon.svg" %}'>
+                        <img src='{% static "irudiak/x-icon.svg" %}'>
                     </div>
                 </div>
             </footer>
-        </div>
     </div>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+        //Karritoko unitateak
+        $.ajax({
+            url: "{% url 'karritoko_unitateak' %}",  // Replace with the actual URL to fetch the cart count
+            type: 'GET',
+            success: function (data) {
+                // Update the HTML element with the new count
+                $('#unitateak').text('(' + data.cart_count + ')');
+            },
+            error: function (xhr, status, error) {
+                console.log("Error: " + error);
+            }
+        });
+
         //Karritotik ezabatu
         $(".delete").on('click',function(e) {
             e.preventDefault()
             var item_id = $(this).attr("id")
+            container = $(this).parent().parent()
             $.ajax({
                 type:'POST',
                 url: "{% url 'karritotik_ezabatu' %}",
@@ -105,11 +146,60 @@
                     csrfmiddlewaretoken: '{{ csrf_token }}'
                 }, // Pass datuak directly as the data
                 success: function(response){
-                    window.location.reload();
+                    container.remove()
                 },error: function (response) {
                     
                 }
             })         
+        })
+
+        //Karritora gehitu
+        $(".gehitu").on('click',function(e) {
+            e.preventDefault()
+            product_id = $(this).attr("id")
+            //Unitate kopurua aldatzeko
+            container = $(this).parent()
+            unit_txt = container.find('.unitateak').text()
+            unit_number = parseInt(unit_txt)
+            unit_number += 1
+
+            $.ajax({
+                type:'POST',
+                url: "{% url 'karritora_gehitu' %}",
+                data:{
+                    product_id: product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }, // Pass datuak directly as the data
+                success: function (response) {
+                    container.find('.unitateak').text(unit_number)
+                }, error: function (response) {
+
+                }
+            })
+        })
+
+        //Karritora gehitu
+        $(".kendu").on('click',function(e) {
+            e.preventDefault()
+            product_id = $(this).attr("id")
+            //Unitate kopurua aldatzeko
+            container = $(this).parent()
+            unit_txt = container.find('.unitateak').text()
+            unit_number = parseInt(unit_txt)
+            unit_number -= 1
+            $.ajax({
+                type:'POST',
+                url: "{% url 'karritotik_kendu' %}",
+                data:{
+                    product_id: product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }, // Pass datuak directly as the data
+                success: function(response){
+                    container.find('.unitateak').text(unit_number)
+                },error: function (response) {
+                    
+                }
+            })
         })
     })
 </script>

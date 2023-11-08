@@ -11,7 +11,7 @@ body{
 }
 
 nav{
-    background: url("/static/img/backimage.svg")center no-repeat;
+    background: url("/static/irudiak/backimage.svg")center no-repeat;
     background-size: cover;
     height: 550px;
 }
