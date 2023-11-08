@@ -26,7 +26,7 @@ def produktuak(request):
 
 
 def produktuak_kategoria(request, cat):
-    produktuak = Produktua.objects.filter(izena=cat)
+    produktuak = Produktua.objects.all().filter(kategoria__izena=cat)
     kategoriak = Kategoria.objects.all()
     aukeratutako_kategoria = Kategoria.objects.get(izena=cat)
     if request.user.is_authenticated:
@@ -40,9 +40,12 @@ def produktuak_kategoria(request, cat):
 def produktua(request, pid):
     produktua = Produktua.objects.get(id=pid)
     kategoriak = Produktua.objects.filter(id=pid).values('kategoria__izena')
-    user = request.user
-    bezeroa = Bezeroa.objects.get(user=user)
-    return render(request, 'produktua.html', {'produktua': produktua, 'kategoriak': kategoriak})
+    if request.user.is_authenticated:
+        user = request.user
+        bezeroa = Bezeroa.objects.get(user=user)
+        return render(request, 'produktua.html', {'produktua': produktua, 'kategoriak': kategoriak})
+    else:
+        return render(request, 'produktua.html', {'produktua': produktua, 'kategoriak': kategoriak})
 
 
 def kontaktua(request):

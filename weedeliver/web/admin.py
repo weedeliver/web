@@ -32,7 +32,7 @@ admin.site.register(Deskontua, DeskontuaAdmin)
 
 class ProduktuaAdmin(admin.ModelAdmin):
     list_display = ['izena', 'deskribapena', 'prezioa', 'deskontua']
-    list_filter = ['izena', 'deskribapena', 'prezioa', 'deskontua']
+    list_filter = ['izena', 'kategoria', 'deskontua']
     search_fields = ['izena', 'deskribapena', 'prezioa', 'deskontua']
 
 

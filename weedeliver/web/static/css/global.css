@@ -227,6 +227,7 @@ footer p {
 
 .kategoria:hover {
     background-color: #A0FAB4;
+    color:black;
 }
 
 .kategoria-aktiboa {
@@ -244,15 +245,16 @@ footer p {
 .produktuacard {
     display: flex;
     flex-direction: column;
-    margin: 0 0 50px;
-    width: 350px;
+    margin: 0;
+    flex:1;
+    min-width: 350px;
     background: #DADADA;
     border-radius: 10px;
 }
 
 .produktuacard img {
     height: 270px;
-    width: 350px;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
 }

@@ -26,22 +26,37 @@
     <!-- Kategoriak -->
     <h4 class="hflextitle">Kategoriak </h4>
         {% for kategoria in kategoriak %}
-            <!-- Kategoria aktiboa -->
             {% if aukeratutako_kategoria.izena == kategoria.izena %}
-                <div class="kategoria kategoria-aktiboa">
+                <a href="/produktuak/" class="notd kategoria-a">
             {% else %}
-                <!-- Kategoria ez aktiboa -->
-                <div class="kategoria">
+                <a href="/produktuak/{{ kategoria.izena }}/" class="notd">
             {% endif %}
+                <!-- Kategoria aktiboa -->
+                {% if aukeratutako_kategoria.izena == kategoria.izena %}
+                    <div class="kategoria kategoria-aktiboa">
+                {% else %}
+                    <!-- Kategoria ez aktiboa -->
+                    <div class="kategoria">
+                {% endif %}
                     {{ kategoria.izena }}
                 </div>
+            </a>
         {% endfor %}
+        </a>
     </div>
-    <h3>Produktu guztiak</h3>
+    {% if aukeratutako_kategoria == none %}
+        <h3>Produktu guztiak</h3>
+    {% else %}
+        <h3>{{ aukeratutako_kategoria.izena }} kategoriako produktuak</h3>
+    {% endif %}
     <div class="produktuak">
         {% for produktua in produktuak %}
             <div class="produktuacard">
+            {% if aukeratutako_kategoria == none %}
                 <img alt="{{ produktua.izena }}" src="../{{ produktua.img|cut:'web/' }}">
+            {% else %}
+                <img alt="{{ produktua.izena }}" src="../../{{ produktua.img|cut:'web/' }}">
+            {% endif %}
                 <div class="produktuadeets">
                     <div class="deetstext">
                         <span class="deetsizena">{{ produktua.izena }}</span>
