@@ -16,15 +16,13 @@
         {% csrf_token %}
         <label for="username">Email:</label>
         <input type="text" name="username" id="username" value="{{ username }}" required>
-        <br>
         <label for="password">Pasahitza:</label>
         <input type="password" name="password" id="password" required>
-        <br>
         <input class="btn loginbtn" type="submit" value="Login">
     </form>
     <a href="/signup">Erregistratu</a>
     <br>
-    {{ error }}
+    <span class="error">{{ error }}</span>
 </div>
 </body>
 </html>
