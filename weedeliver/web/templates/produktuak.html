@@ -118,10 +118,9 @@ $(document).ready(function () {
 
     //Karritoko unitateak
     $.ajax({
-        url: "{% url 'karritoko_unitateak' %}",  // Replace with the actual URL to fetch the cart count
+        url: "{% url 'karritoko_unitateak' %}", 
         type: 'GET',
         success: function (data) {
-            // Update the HTML element with the new count
             $('#unitateak').text('(' + data.cart_count + ')');
         },
         error: function (xhr, status, error) {

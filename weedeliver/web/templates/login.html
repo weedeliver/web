@@ -43,14 +43,14 @@
 
         <!--Form login -->
         <div>
-            <form method="GET">
+            <form action="" method="GET">
                 {% csrf_token %}
                 <div>
                     <label for="user">Erabiltzailea</label>
-                    <input type="text" name="user" id="user">
+                    <input type="text" name="user" id="user" required>
 
                     <label for="pasahitza">Pasahitza</label>
-                    <input type="password" name="pasahitza" id="pasahitza">
+                    <input type="password" name="pasahitza" id="pasahitza" required>
 
                     <button type="submit">Saioa hasi</button>
                     <p id="incorrect" class="incorrect">Erabiltzailea edo pasahitza gaizki dago.Saiatu Berriro</p>

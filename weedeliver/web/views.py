@@ -67,7 +67,8 @@ def profila(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
 
-    return render(request,'profila.html',{"bezeroa": bezeroa})
+    erosketak = Erosketa.objects.filter(bezeroa=bezeroa)
+    return render(request,'profila.html',{"bezeroa": bezeroa,"erosketak":erosketak})
 
 
 @login_required
@@ -186,5 +187,8 @@ def gomendioak(request):
 
     data = [{"name": produktua.izena, "image": produktua.img.url} for produktua in random_produktuak]
     return JsonResponse(data, safe=False)
+
+
+
 
     

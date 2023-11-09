@@ -66,11 +66,13 @@
                 <div>
                     <h2>Azken erosketak</h2>
                 </div>
+                {% for erosketa in erosketak%}
                 <div class="erosketa-info">
-                    <p>a</p>
-                    <p>b</p>
-                    <p>c</p>
+                    <p>{{erosketa.data}}</p>
+                    <p>{{erosketa.produktuak.count}} produktu</p>
+                    <p>{{erosketa.guztira|floatformat:2}}</p>
                 </div>
+                {% endfor %}
             </div>
             <!--Beste batzuk-->
             <div class="upgrade">
