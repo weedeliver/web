@@ -19,8 +19,10 @@
                     <h4>{{ item.produktua.izena }}</h4>
                     <span>{{ item.produktua.prezioa }}€</span>
                 </div>
-                <div>
-                    <span class="saskiakantitatea">{{ item.kantitatea }}</span>
+                <div class="hflex">
+                    <div class="btn minusplus" id="minus">-</div>
+                    <span id="skantitateav" class="saskiakantitatea">{{ item.kantitatea }}</span>
+                    <div class="btn minusplus" id="plus">+</div>
                 </div>
                 <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
             </div>

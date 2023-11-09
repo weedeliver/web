@@ -19,6 +19,7 @@
     </div>
     <div id="navr">
         {% if user.is_authenticated %}
+            <a href="/saskia" class="navsaskiaa"> <img alt="saskia" class="navsaskia" src="{% static "irudiak/webimg/icons/shopping_cart_white.svg" %}"> </a>
             <a href="/kontua"> {{ user.username }} -></a>
         {% else %}
             <a href="/signup"> Sortu kontua </a>
