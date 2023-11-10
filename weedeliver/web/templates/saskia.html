@@ -103,10 +103,10 @@
                     //Unitateak aldatu
                     container_unit.find('.unitateak').text(unit_number)
                     //Prezioa aldatu
-                    prezio_finala = parseInt(prezioa_txt)
-                    prezio_finala = prezio_finala + response[0].prezioa
+                    prezio_finala = parseFloat(prezioa_txt)
+                    prezio_finala += response[0].prezioa
                     alert(response[0].prezioa)
-                    //prezio_finala = prezio_finala.toFixed(2)
+                    prezio_finala = prezio_finala.toFixed(2)
                     container_main.find('.saskiaprezioa').text(prezio_finala + "€")
                 }, error: function (response) {
 
@@ -138,7 +138,7 @@
                     //Unitateak aldatu
                     container_unit.find('.unitateak').text(unit_number)
                     //Prezioa aldatu
-                    prezio_finala = parseInt(prezioa_txt)
+                    prezio_finala = parseFloat(prezioa_txt)
                     prezio_finala -= response[0].prezioa
                     prezio_finala = prezio_finala.toFixed(2)
                     container_main.find('.saskiaprezioa').text(prezio_finala + "€")
