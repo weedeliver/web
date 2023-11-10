@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from web.models import Produktua, Kategoria, Bezeroa, Saskia, SaskiaItem
+from web.models import Erosketa, Produktua, Kategoria, Bezeroa, Saskia, SaskiaItem
 
 
 # Create your views here.
@@ -227,3 +227,33 @@ def saskitik_ezabatu(request):
 
 
     return JsonResponse({'success': True})
+
+
+@login_required
+def erosketa_egin(request):
+    user = request.user
+    bez = Bezeroa.objects.get(user=user)
+    
+    saskia = Saskia.objects.filter(bezeroa=bez).first()
+
+    ##PRODUKTUAK GORDETZEKO
+    guz = 0
+    produktuak = []
+    items = SaskiaItem.objects.filter(saskia=saskia)
+    for i in items:
+        produktua = i.produktua
+        produktuak.append(produktua)
+        guz = guz + (i.kantitatea * i.produktua.prezioa) 
+    
+    erosketa = Erosketa()
+    erosketa.bezeroa = bez
+    erosketa.totala = guz
+    erosketa.save()  # Save the Erosketa object before setting the many-to-many relationship
+
+    # Now, set the many-to-many relationship
+    erosketa.produktuak.set(produktuak)
+
+    ##saskia eta itemak ezabatu
+    saskia.delete()
+    items.delete()
+    return HttpResponseRedirect(reverse('index'))

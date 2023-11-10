@@ -24,4 +24,5 @@ urlpatterns = [
     path('harpidetu/', views.plus, name='plus'),
     path('harpidetza/erosi/', views.harpidetu, name='minus'),
     path('saskia/saskitik_ezabatu/',views.saskitik_ezabatu,name="saskitik_ezabatu"),
+    path('saskia/erosketa/',views.erosketa_egin,name="erosketa"),
 ]
