@@ -225,8 +225,9 @@ def saskitik_ezabatu(request):
     item = SaskiaItem.objects.get(id=item_id,saskia=saskia)
     item.delete()
 
-
-    return JsonResponse({'success': True})
+    total_items = SaskiaItem.objects.filter(saskia=saskia).count()
+    data = [{'success': True,'items': total_items}]
+    return JsonResponse(data,safe=False)
 
 
 @login_required
