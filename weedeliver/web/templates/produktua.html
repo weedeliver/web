@@ -1,0 +1,77 @@
+{% load static %}
+{% load math_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>{{ produktua.izena }} - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <div class="produktuaouter">
+            <div class="vflex produktuainfo">
+                <div class="hflex">
+                    <!-- Itzuli botoia -->
+                    <a href="/produktuak"  class="hflextitle">
+                        <h4 class="hflextitle">
+                            <- Itzuli
+                        </h4>
+                    </a>
+                    <!-- Produktuaren kategoriak -->
+                    {% for kategoria in kategoriak %}
+                        <div class="produktuacatpill">
+                            {{ kategoria.kategoria__izena }}
+                        </div>
+                    {% endfor %}
+                </div>
+            <h3>{{ produktua.izena }}</h3>
+            <h4 class="produktuaprezioa">
+                {% if produktua.deskontua.izena == "Ez" %}
+                    {{ produktua.prezioa|floatformat:2 }}€
+                {% elif produktua.deskontua.isEhunekoa %}
+                    <span class="produktuaprezioa strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                    <span class="produktuaprezioa">-{{ produktua.deskontua.kantitatea }}% {{ produktua.prezioa|floatformat:2|percent:produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                {% else %}
+                    <span class="produktuaprezioa strike">{{ produktua.prezioa|floatformat:2 }}€</span>
+                    <span class="produktuaprezioa">-{{ produktua.deskontua.kantitatea }}€ {{ produktua.prezioa|floatformat:2|sub:produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                {% endif %}
+            </h4>
+            <h5>Deskribapena</h5>
+            <p>{{ produktua.deskribapena }}</p>
+            {% if user.is_authenticated %}
+                <form action="/produktua/{{ produktua.id }}/gehitu/" method="POST">
+                    {% csrf_token %}
+                    <div class="hflex">
+                        <div class="produktuakantitatea">
+                            <div class="hflex">
+                              <button type="button" class="minusplus" id="minus" onclick="decrement()">-</button>
+                                <input type="hidden" name="kantitatea" id="kantitatea" value="1" min="1" max="100" required>
+                                <span id="kantitateav">1</span>
+                              <button type="button" class="minusplus" id="plus" onclick="increment()">+</button>
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="produktuagehitu">
+                            <input type="submit" class="btn gehitubtn" value="Gehitu">
+                        </div>
+                </form>
+            {% else %}
+                <span class="produktualogin"><b><a href="/login">Hasi saioa</a></b> edo <b><a href="/signup">sortu kontu bat</a></b> produktuak erosteko.</span>
+            {% endif %}
+            </div>
+            <div class="produktuairudia">
+                <img alt="{{ produktua.izena }}" src="../../{{ produktua.img|cut:'web/' }}">
+            </div>
+        </div>
+    </div>
+    <script src="{% static "js/produktua.js" %}">
+
+    </script>
+    {% include "elements/footer.html" %}
+
+</body>
+</html>

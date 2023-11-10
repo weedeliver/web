@@ -1,0 +1,693 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/*TEXT*/
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+h4, h5 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+    color: #1a1a1a;
+}
+
+a {
+    color:black;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:#30C150;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+
+/*NAV&FOOTER*/
+body {
+    margin:0;
+    font-family: 'Manrope', sans-serif;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+nav {
+    background-color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+}
+
+nav img {
+    height:40px;
+    margin: 0 10px 10px;
+    vertical-align: middle;
+}
+
+nav a {
+    display:inline-block;
+    vertical-align: middle;
+    color:black;
+    text-decoration:none;
+    font-size:20px;
+    margin:10px;
+    height: 100%;
+    line-height: 50px;
+}
+
+.navsaskia {
+    height: 30px;
+    margin: 0;
+}
+
+.navlogin {
+    padding: 0 15px;
+}
+
+.navlogin:hover {
+    color:white;
+}
+
+#navl {
+    height: fit-content;
+}
+
+#navr {
+    display:flex;
+    flex-direction:row;
+    height: fit-content;
+    align-items:center;
+}
+
+.navsaskiaa {
+    height: fit-content;
+}
+
+footer {
+    background-color: black;
+    text-align: center;
+    padding-bottom: 1em;
+    display:flex;
+    flex-direction:column;
+}
+
+footer h3 {
+    color: white;
+    font-size: 25px;
+    margin-top: 1em;
+}
+
+.footer-logo {
+    width: 200px;
+    margin-top: 1em;
+}
+
+.footer-content {
+    border-top: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    color: white;
+    max-width: 1600px;
+    width:calc(100% - 100px);
+    align-self: center;
+}
+
+footer p {
+    font-size: 15px;
+}
+
+.footersocials img {
+    width: 30px;
+}
+
+.whitea {
+    color:white;
+    text-decoration:none;
+}
+
+.whitea:visited {
+    color:white;
+}
+
+.notd {
+    text-decoration:none;
+}
+
+.flex1 {
+    flex:1;
+}
+
+.warndiv {
+    background-color: #fff5d6;
+    border: solid 1px #f0c36d;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/*GLOBAL*/
+.global {
+    max-width: 1600px;
+    width:calc(100% - 100px);
+    align-self: center;
+    padding: 0 50px;
+    flex-grow: 1;
+    margin-bottom: 50px;
+}
+
+.carousel {
+    display: flex;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.carouselitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px 0 0;
+}
+
+.carouselitem img {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.vflex {
+    display:flex;
+    flex-direction:column;
+}
+
+.hflex {
+    display:flex;
+}
+
+/* hflex title fix, mostly for categories */
+.hflextitle {
+    margin: 0 10px 0 0;
+    align-self: center;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width:fit-content;
+    box-shadow: rgba(0, 0, 0, 0.31) 2px 2px 0;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.31) 4px 4px 0;
+    transform: translate(-2px, -2px);
+}
+
+/*PRODUKTUAK*/
+.kategoriak {
+    display:flex;
+    overflow-x: auto;
+}
+
+.kategoria {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.kategoria:hover {
+    background-color: #A0FAB4;
+    color:black;
+}
+
+.kategoria-aktiboa {
+    background-color: #30C150;
+    color:white;
+}
+
+/*PRODUKTUA CARD*/
+.produktuak {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.produktuacard {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    flex:1;
+    min-width: 350px;
+    background: #DADADA;
+    border-radius: 10px;
+}
+
+.produktuacard img {
+    height: 270px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.produktuadeets {
+    display:flex;
+    padding: 15px;
+}
+
+.deetstext {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex:1;
+}
+
+.deetsizena {
+    font-size: 20px;
+    font-weight: 700;
+    max-width: 240px;
+    color: #1a1a1a;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deetsprezioa {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.deetsbidalketa {
+    font-size: 16px;
+    font-weight: 400;
+    color: #494949;
+}
+
+.produktuaikusibtn {
+    padding: 7px 12px;
+    font-size: 15px;
+    margin-top: 10px;
+    width:fit-content;
+    white-space: nowrap;
+}
+
+.produktuacard a {
+    text-decoration: none;
+    width:fit-content;
+}
+
+/* PRODUKTUA (INDIBIDUALA) */
+.produktuacatpill {
+    background-color: #A0FAB4;
+    color: black;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin: 0 10px 0 0;
+    width:fit-content;
+}
+
+.produktuairudia img {
+    height: 500px;
+    width: 700px;
+    max-width: 50vw;
+    object-fit: cover;
+    border-radius: 10px;
+    align-self:end;
+}
+
+.produktuaouter {
+    display:flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.produktuainfo {
+    flex:1;
+    margin: 0 50px 0 0;
+}
+
+.produktuainfo h3 {
+    margin: 15px 0;
+}
+
+.produktuaprezioa {
+    font-size: 25px;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.produktuainfo h5 {
+    margin: 30px 0 0;
+    font-weight: 700;
+}
+
+.produktuainfo p {
+    flex:1;
+}
+
+.produktualogin {
+  font-size: 20px;
+}
+
+#kantitateav {
+    margin: 0 10px;
+    font-size: 30px;
+    font-weight: 600;
+    width: 40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.minusplus {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 10px 0;
+    border-radius: 100px;
+    background: black;
+    color:white;
+    font-weight: 500;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    border:none;
+}
+
+.gehitubtn {
+    width: 100%;
+    margin: 10px 0 0;
+    font-size: 20px;
+    padding: 10px;
+    font-family: 'Manrope', sans-serif;
+}
+
+
+/*KONTAKTUA*/
+
+.kontaktuaimg {
+    height: 400px;
+    width: 600px;
+    max-width: 40%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.kontaktuaform {
+    flex:1;
+    margin-right: 50px;
+}
+
+.kontaktuaform input, .loginform input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.kontaktuata {
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.kontaktuabtn {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+/*LOGIN*/
+.loginform {
+    display:flex;
+    flex-direction:column;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.loginbtn {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.loginpopup {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.loginlogo {
+    width: 200px;
+    margin: 0;
+}
+
+.loginitzuli {
+    margin: 0 0 15px;
+    height: fit-content;
+}
+
+.error {
+    color:red;
+}
+
+/*ACCOUNT*/
+.bento {
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #DADADA;
+}
+
+.bento h3 {
+    color: black;
+    margin: 0 0 10px;
+}
+
+.bento p {
+    color: black;
+    margin: 0 0 5px;
+}
+
+.bento h5 {
+    color: black;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.accountbento {
+    margin-left: 25px;
+}
+
+.rolebadge {
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+/*PLUS*/
+.adweedeliverplus p {
+        font-size: 22px;
+}
+
+.adweedeliverplus span {
+    color: black;
+    font-size: 28px;
+    text-align:right;
+    margin-top: -20px
+}
+
+.plustitle {
+    margin-bottom: -10px;
+}
+
+.pluscards {
+    justify-content: center;
+}
+
+.pluscard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 25px;
+    padding: 20px 10px;
+    width: 300px;
+    height: 500px;
+    background: #DADADA;
+    border-radius: 10px;
+}
+
+.pluscard h3 {
+    color: black;
+    margin: 0 0 10px;
+}
+
+.pluscard p {
+    color: black;
+    margin: 0 0 5px;
+    font-size: 18px;
+}
+
+.pluscard h5 {
+    color: black;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.upgradebtn {
+    margin-top: 20px;
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+}
+
+.upgradebtn:hover {
+    background: black;
+    color: white;
+}
+
+.stdcolors {
+    background: #DADADA;
+}
+
+.pluscolors {
+    background: linear-gradient(105deg, #A0FAB4 0%, #ABFAFF 72.8%, #ADA0FA 100%);
+}
+
+.vipcolors {
+    background: linear-gradient(105deg, #F6E58C 0%, #E7D185 30.21%, #FFF 61.98%, #FAEBA0 78.12%, #FAEBA0 100%);
+}
+
+.btm {
+    text-align: center;
+}
+
+
+/*SASKIA*/
+
+.saskiaproduktua {
+    display: flex;
+    margin: 0 0 20px;
+    width: 100%;
+    background: #DADADA;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.saskiaproduktua img {
+    height: 70px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.saskiaizena {
+font-size: 15px;
+    font-weight: 700;
+    flex: 1;
+    color: #1a1a1a;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 10px;
+}
+
+.saskiaizena h4 {
+    margin:0 0 5px;
+    font-size: 20px;
+}
+
+.saskiakantitatea {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.saskiaprezioa {
+    margin: 0 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.saskiabidalketa {
+    display: flex;
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+
+.saskiabento {
+    gap: 10px;
+}
+
+.bentoh {
+    flex:1;
+}
+
+.bentoguztira {
+    text-align: right;
+}

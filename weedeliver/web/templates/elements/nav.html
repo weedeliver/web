@@ -1,0 +1,18 @@
+{% load static %}
+<nav>
+    <div id="navl">
+        <a href="/"><img alt="WeeDeliver logo" src="{% static "irudiak/logo/logob.svg" %}"></a>
+        <a href="/">Hasiera</a>
+        <a href="/produktuak">Produktuak</a>
+        <a href="/kontaktua">Kontaktua</a>
+    </div>
+    <div id="navr">
+        {% if user.is_authenticated %}
+            <a href="/saskia" class="navsaskiaa"> <img alt="saskia" class="navsaskia" src="{% static "irudiak/webimg/icons/shopping_cart.svg" %}"> </a>
+            <a href="/kontua"> {{ user.username }} -></a>
+        {% else %}
+            <a href="/signup"> Sortu kontua </a>
+            <a class="btn navlogin whitea" href="/login"> Hasi saioa </a>
+        {% endif %}
+    </div>
+</nav>

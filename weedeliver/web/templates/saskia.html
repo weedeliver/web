@@ -1,0 +1,78 @@
+{% load math_filters %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Saskia - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <h3>Saskia</h3>
+        {% for item in items %}
+            <div class="saskiaproduktua">
+                <img src="../{{ item.produktua.img|cut:'web/' }}" alt="{{ item.produktua.izena }}">
+                <div class="saskiaizena">
+                    <h4>{{ item.produktua.izena }}</h4>
+                    <span>{{ item.produktua.prezioa }}€</span>
+                </div>
+                <div class="hflex">
+                    <div class="btn minusplus" id="minus">-</div>
+                    <span id="skantitateav" class="saskiakantitatea">{{ item.kantitatea }}</span>
+                    <div class="btn minusplus" id="plus">+</div>
+                </div>
+                <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
+            </div>
+        {% endfor %}
+
+        {% if bezeroa.harpidetza == "basic" %}
+            <div class="saskiabidalketa stdcolors">
+                <span class="flex1">Bidalketa</span>
+                <span><b>3.99€</b></span>
+            </div>
+        {% else %}
+            <div class="saskiabidalketa pluscolors">
+                <span class="flex1">Bidalketa</span>
+                <span><span class="strike">3.99€</span> <b>0.00€</b></span>
+            </div>
+        {% endif %}
+        <div class="hflex saskiabento">
+            <div class="bento bentoh">
+                <h3>Hona bidali</h3>
+                <p>{{ bezeroa.izena }} {{ bezeroa.abizena }}</p>
+                <p>{{ bezeroa.helbidea }}</p>
+                <p>{{ bezeroa.posta_kodea }} {{ bezeroa.herria }}</p>
+            </div>
+            {% if bezeroa.harpidetza == "basic" %}
+                <div class="adweedeliverplus bento bentoh pluscolors">
+                    <h3>Doako bidalketa nahi?</h3>
+                    <p>Probatu WeeDeliver Plus</p>
+                    <p>4.99€/hilabete</p>
+                    <span>-></span>
+                </div>
+            {% elif bezeroa.harpidetza == "plus" %}
+                <div class="adweedeliverplus bento bentoh vipcolors">
+                    <h3>Ferrari bidezko bidalketa nahi?</h3>
+                    <p>Eskuratu WeeDeliver VIP</p>
+                    <p>39.99€/hilabete</p>
+                    <span>-></span>
+                </div>
+            {% else %}
+                <div class="adweedeliverplus bento bentoh vipcolors">
+                    <h3>VIP bat zara</h3>
+                    <p>Zure eskaera Ferrari bidez iritsiko da</p>
+                    <p>Eskerrik asko VIP aukeratzeagatik</p>
+                    <span>-></span>
+                </div>
+            {% endif %}
+            <div class="bento bentoh bentoguztira">
+
+            </div>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>

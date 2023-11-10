@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Saioa hasi - WeeDeliver</title>
+</head>
+<body>
+<div class="loginpopup">
+    <a href="/"><h4 class="loginitzuli"><- Itzuli</h4></a>
+    <img alt="WeeDeliver logoa" class="loginlogo" src="{% static "irudiak/logo/logog.svg" %}">
+    <h1>Hasi saioa</h1>
+    <form class="loginform" action="/login/auth/" method="post">
+        {% csrf_token %}
+        <label for="username">Email:</label>
+        <input type="text" name="username" id="username" value="{{ username }}" required>
+        <label for="password">Pasahitza:</label>
+        <input type="password" name="password" id="password" required>
+        <input class="btn loginbtn" type="submit" value="Login">
+    </form>
+    <a href="/signup">Erregistratu</a>
+    <br>
+    <span class="error">{{ error }}</span>
+</div>
+</body>
+</html>

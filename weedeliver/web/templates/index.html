@@ -1,0 +1,100 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="stylesheet" href='{% static "css/home.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>WeeDeliver</title>
+</head>
+<body>
+    <div id="hero">
+        <nav>
+    <div id="navl">
+        <a href="/"><img alt="WeeDeliver logo" src="{% static "irudiak/logo/logow.svg" %}"></a>
+        <a href="/">Hasiera</a>
+        <a href="/produktuak">Produktuak</a>
+        <a href="/kontaktua">Kontaktua</a>
+    </div>
+    <div id="navr">
+        {% if user.is_authenticated %}
+            <a href="/saskia" class="navsaskiaa"> <img alt="saskia" class="navsaskia" src="{% static "irudiak/webimg/icons/shopping_cart_white.svg" %}"> </a>
+            <a href="/kontua"> {{ user.username }} -></a>
+        {% else %}
+            <a href="/signup"> Sortu kontua </a>
+            <a class="btn navlogin whitea" href="/login"> Hasi saioa </a>
+        {% endif %}
+    </div>
+</nav>
+        <div class="herocontent">
+            <h1>As fast<br>as Speed.</h1>
+            <a href="/produktuak"><div class="herobutton">Begiratu menua</div></a>
+        </div>
+    </div>
+    <div class="global">
+        <h3>Janari azkarra</h3>
+        <!-- TODO: hau kendu eta datu basetik hartu -->
+        <div class="carousel">
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div> 
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+            <div class="carouselitem">
+                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
+                <h4>Hot dogg</h4>
+            </div>
+        </div>
+        <div class="homesection">
+            <img src="{% static "irudiak/webimg/lagunak.jpg" %}" alt="Lagun batzuk blunt bat erretzen pizza jaten duten bitartean">
+            <div class="rightsection">
+                <h2>Zure osagai gogokoenak</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+            </div>
+        </div>
+        <div class="homesection">
+            <div class="leftsection">
+                <h2>Jatetxea</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+            </div>
+            <img src="{% static "irudiak/webimg/jatetxea.png" %}" alt="WeeDeliver jatetxea">
+        </div>
+        <div class="homesection">
+            <img src="{% static "irudiak/webimg/etxerako.png" %}" alt="Tximino bat janaria entregatzen">
+            <div class="rightsection">
+                <h2>Etxerako</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+            </div>
+        </div>
+        <div class="goseaduzu">
+            <h2>Gosea duzu?</h2>
+            <a href="/produktuak"><div class="herobutton">Eskatu WeeDeliver</div></a>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>

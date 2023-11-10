@@ -1,0 +1,43 @@
+{% load static %}
+{% load math_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Zure datuak - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <div class="hflex">
+            <h3 class="hflextitle">Zure datuak</h3>
+            <a class="hflextitle" href="/logout/">itxi saioa</a>
+        </div>
+        <div class="vflex">
+              <form class="loginform" action="/kontua/aldatu/gorde/" method="post">
+                {% csrf_token %}
+                <label for="izena">Izena:</label>
+                <input type="text" name="izena" id="izena" value="{{ bezeroa.izena }}" required><br>
+                <label for="abizena">Abizena:</label>
+                <input type="text" name="abizena" id="abizena" value="{{ bezeroa.abizena }}" required><br>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" value="{{ bezeroa.emaila }}" required><br>
+                <label for="helbidea">Helbidea:</label>
+                <input type="text" name="helbidea" id="helbidea" value="{{ bezeroa.helbidea }}" required><br>
+                <label for="herria">Herria:</label>
+                <input type="text" name="herria" id="herria" value="{{ bezeroa.herria }}" required><br>
+                <label for="posta_kodea">Posta-kodea:</label>
+                <input type="number" name="posta_kodea" id="posta_kodea" value="{{ bezeroa.posta_kodea }}" required><br>
+                <label for="txartela">Kreditu txartela:</label>
+                <input type="text" name="txartela" id="txartela"  value="{{ bezeroa.txartela }}" required><br>
+                <label for="telefonoa">Telefonoa:</label>
+                <input type="text" name="telefonoa" id="telefonoa" value="{{ bezeroa.telefonoa }}" required><br>
+                 <input class="btn loginbtn" type="submit" value="Aldatu">
+            </form>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>

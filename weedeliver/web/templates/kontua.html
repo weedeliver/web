@@ -1,0 +1,81 @@
+{% load static %}
+{% load math_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/global.css" %}'>
+    <link rel="icon" type="image/x-icon" href="{% static 'irudiak/webimg/favicon.ico' %}">
+    <title>Kontua - WeeDeliver</title>
+</head>
+<body>
+    {% include "elements/nav.html" %}
+    <div class="global">
+        <div class="hflex">
+            <h3 class="hflextitle">Kaixo, {{ bezeroa.izena }}!</h3>
+            {% if bezeroa.harpidetza == "plus" %}
+                <div class="pluscolors rolebadge">PLUS</div>
+                {% elif bezeroa.harpidetza == "VIP" %}
+                <div class="vipcolors rolebadge">VIP</div>
+            {% endif %}
+            <a class="hflextitle" href="/logout/">itxi saioa</a>
+        </div>
+        <div class="hflex">
+            <div class="vflex flex1">
+                {% if bezeroa.helbidea == none %}
+                    <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak eskaera bat egiteko</div>
+                {% endif %}
+                <h4>Zure erosketak</h4>
+                <!--TODO: erosketak-->
+            </div>
+        <!--Bento bat informazio ezberdinarekin-->
+            <div class="vflex accountbento">
+                <div class="bento">
+                    <a><h3>Zure datuak</h3></a>
+                    <p>{{ bezeroa.emaila }}</p>
+                    <p>{{ bezeroa.telefonoa }}</p>
+                    {% if bezeroa.txartela == none %}
+                        <p>ez duzu txartelik</p>
+                    {% else %}
+                        <p>{{ bezeroa.txartela }}</p>
+                    {% endif %}
+                    {% if bezeroa.helbidea == none %}
+                        <p>ez duzu helbiderik</p>
+                    {% else %}
+                        <h5>Helbidea</h5>
+                        <p>{{ bezeroa.izena }} {{ bezeroa.abizena }}</p>
+                        <p>{{ bezeroa.helbidea }}</p>
+                        <p>{{ bezeroa.posta_kodea }} {{ bezeroa.herria }}</p>
+                    {% endif %}
+                    <a href="/kontua/aldatu/">Aldatu</a>
+                </div>
+                <!--Harpidetzaren arabera aldatzen da-->
+                <a href="/harpidetu/" class="notd">
+                    {% if bezeroa.harpidetza == "basic" %}
+                    <div class="adweedeliverplus bento pluscolors">
+                        <h3>Doako bidalketa nahi?</h3>
+                        <p>Probatu WeeDeliver Plus</p>
+                        <p>4.99€/hilabete</p>
+                        <span>-></span>
+                    </div>
+                    {% elif bezeroa.harpidetza == "plus" %}
+                    <div class="adweedeliverplus bento vipcolors">
+                        <h3>Esperientzia onena nahi?</h3>
+                        <p>Eskuratu WeeDeliver VIP</p>
+                        <p>39.99€/hilabete</p>
+                        <span>-></span>
+                    </div>
+                    {% elif bezeroa.harpidetza == "VIP" %}
+                    <div class="adweedeliverplus bento vipcolors">
+                        <h3>VIP bat zara</h3>
+                        <p>Kudeatu zure harpidetza</p>
+                        <span>-></span>
+                    </div>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+    {% include "elements/footer.html" %}
+</body>
+</html>
