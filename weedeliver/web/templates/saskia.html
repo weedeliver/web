@@ -20,9 +20,9 @@
                     <span>{{ item.produktua.prezioa }}€</span>
                 </div>
                 <div class="hflex">
-                    <div class="btn minusplus" id="minus">-</div>
-                    <span id="skantitateav" class="saskiakantitatea">{{ item.kantitatea }}</span>
-                    <div class="btn minusplus" id="plus">+</div>
+                    <div class="btn minusplus" name="minus" id="{{item.produktua.id}}">-</div>
+                    <span id="skantitateav" class="saskiakantitatea unitateak">{{ item.kantitatea }}</span>
+                    <div class="btn minusplus" name="plus" id="{{item.produktua.id}}">+</div>
                 </div>
                 <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
             </div>
@@ -75,4 +75,79 @@
     </div>
     {% include "elements/footer.html" %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Karritora gehitu
+        $("[name='plus']").on('click',function(e) {
+            e.preventDefault()
+            product_id = $(this).attr("id")
+            //Unitate kopurua aldatzeko
+            container_unit = $(this).parent()
+            unit_txt = container_unit.find('.unitateak').text()
+            unit_number = parseInt(unit_txt)
+            unit_number += 1
+            //Prezioa aldatzeko
+            container_main = $(this).parent().parent()
+            prezioa_txt = container_main.find('.saskiaprezioa').text()
+
+            $.ajax({
+                type:'POST',
+                url: "{% url 'unitateak_aldatu' %}",
+                data:{
+                    aldatu : "gehitu",
+                    product_id: product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }, // Pass datuak directly as the data
+                success: function (response) {
+                    //Unitateak aldatu
+                    container_unit.find('.unitateak').text(unit_number)
+                    //Prezioa aldatu
+                    prezio_finala = parseInt(prezioa_txt)
+                    prezio_finala = prezio_finala + response[0].prezioa
+                    alert(response[0].prezioa)
+                    //prezio_finala = prezio_finala.toFixed(2)
+                    container_main.find('.saskiaprezioa').text(prezio_finala + "€")
+                }, error: function (response) {
+
+                }
+            })
+        })
+
+        //Karritotik kendu
+        $("[name='minus']").on('click',function(e) {
+            e.preventDefault()
+            product_id = $(this).attr("id")
+            //Unitate kopurua aldatzeko
+            container_unit = $(this).parent()
+            unit_txt = container_unit.find('.unitateak').text()
+            unit_number = parseInt(unit_txt)
+            unit_number -= 1
+            //Prezioa aldatzeko
+            container_main = $(this).parent().parent()
+            prezioa_txt = container_main.find('.saskiaprezioa').text()
+            $.ajax({
+                type:'POST',
+                url: "{% url 'unitateak_aldatu' %}",
+                data:{
+                    aldatu : "kendu",
+                    product_id: product_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                }, // Pass datuak directly as the data
+                success: function (response) {
+                    //Unitateak aldatu
+                    container_unit.find('.unitateak').text(unit_number)
+                    //Prezioa aldatu
+                    prezio_finala = parseInt(prezioa_txt)
+                    prezio_finala -= response[0].prezioa
+                    prezio_finala = prezio_finala.toFixed(2)
+                    container_main.find('.saskiaprezioa').text(prezio_finala + "€")
+                }, error: function (response) {
+
+                }
+            })
+        })
+
+    })
+</script>
 </html>

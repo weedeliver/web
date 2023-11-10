@@ -2,7 +2,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -191,3 +191,24 @@ def saskira_gehitu(request, pid):
         saskia.saskia_items.add(saskia_item)
 
     return HttpResponseRedirect(reverse('saskia'))
+
+def unitateak_aldatu(request):
+    product_id = request.POST['product_id']
+    aldatu = request.POST['aldatu']
+    produktua = Produktua.objects.get(id=product_id)
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    saskia = Saskia.objects.filter(bezeroa=bezeroa).first()
+
+    ##Gehitu beharreko produktua aurkitu
+    existing_item = SaskiaItem.objects.filter(produktua=produktua,saskia=saskia).first()
+    ##Produktua karritoan badago unitate bat gehiago gehitu
+    if existing_item and aldatu == "gehitu": 
+        existing_item.kantitatea += 1
+        existing_item.save()
+    elif existing_item and aldatu == "kendu":
+        existing_item.kantitatea -= 1
+        existing_item.save()
+
+    data = [{'success': True,"prezioa":produktua.prezioa}]
+    return JsonResponse(data,safe=False)
