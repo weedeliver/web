@@ -70,6 +70,10 @@ a {
 }
 
 /*AFTER HERO*/
+#gomendioak h4 {
+    white-space:nowrap;
+}
+
 .homesection {
     display: flex;
     margin: 50px 0;
@@ -88,8 +92,9 @@ a {
     margin-left: 30px;
 }
 
-.rightsection {
+.leftsection {
     margin-right: 30px;
+    width: 100%
 }
 
 /*AMAIERA*/

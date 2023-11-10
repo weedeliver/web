@@ -1,3 +1,4 @@
+import random
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -257,3 +258,10 @@ def erosketa_egin(request):
     saskia.delete()
     items.delete()
     return HttpResponseRedirect(reverse('index'))
+
+def gomendioak(request):
+    gomendioak_produktuak = list(Produktua.objects.all())
+    random_produktuak = random.sample(gomendioak_produktuak,10)
+
+    data = [{"name": gomendioa.izena, "image": gomendioa.img.url} for gomendioa in random_produktuak]
+    return JsonResponse(data, safe=False)

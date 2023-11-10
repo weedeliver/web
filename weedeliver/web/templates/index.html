@@ -33,53 +33,30 @@
         </div>
     </div>
     <div class="global">
-        <h3>Janari azkarra</h3>
-        <!-- TODO: hau kendu eta datu basetik hartu -->
-        <div class="carousel">
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div> 
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
+        <h3>Gomendioak</h3>
+        <div class="carousel" id="gomendioak">
+
         </div>
         <div class="homesection">
             <img src="{% static "irudiak/webimg/lagunak.jpg" %}" alt="Lagun batzuk blunt bat erretzen pizza jaten duten bitartean">
             <div class="rightsection">
                 <h2>Zure osagai gogokoenak</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+                <p>
+                    Zuretzat, zure lagunentzat, zure familiarentzat... Berdin du zein diren gonbidatuak. Gure
+                    kalitatezko osagaiekin mundu guztia geratuko da gustora. Jan, edan eta gozatu WeeDeliverrekin.
+                    <br>
+                    <br>
+
+                </p>
             </div>
         </div>
         <div class="homesection">
             <div class="leftsection">
                 <h2>Jatetxea</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+                <p>
+                    Etorri gure jatetxera! Bertan jateko eta edateko zerbitzua eskaintzen dugu, nahi duzun jendearekin
+                    gozatzeko.
+                </p>
             </div>
             <img src="{% static "irudiak/webimg/jatetxea.png" %}" alt="WeeDeliver jatetxea">
         </div>
@@ -87,7 +64,14 @@
             <img src="{% static "irudiak/webimg/etxerako.png" %}" alt="Tximino bat janaria entregatzen">
             <div class="rightsection">
                 <h2>Etxerako</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+                <p>
+                    Pizzak, hanburgesak, brownieak... Dena zure etxean, zure lagunekin, zure gustora. Eskatu on-line
+                    eta zuregana eramango dugu. Ez moztu zure planak, eskatu WeeDeliver.
+                    <br>
+                    <br>
+                    Jarraitu zure jokoan ibiltzen zure lagunekin, ez galdu denborarik, eta gure tximinoek zure janaria
+                    eramango dute zure etxera.
+                </p>
             </div>
         </div>
         <div class="goseaduzu">
@@ -97,4 +81,6 @@
     </div>
     {% include "elements/footer.html" %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static "js/home.js" %}"></script>
 </html>
