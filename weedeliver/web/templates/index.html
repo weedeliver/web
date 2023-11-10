@@ -33,47 +33,17 @@
         </div>
     </div>
     <div class="global">
-        <h3>Janari azkarra</h3>
-        <!-- TODO: hau kendu eta datu basetik hartu -->
-        <div class="carousel">
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div> 
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
-            <div class="carouselitem">
-                <img alt="Hot dogg" src="{% static "irudiak/hotdog.jpg" %}">
-                <h4>Hot dogg</h4>
-            </div>
+        <h3>Gomendioak</h3>
+        <div class="carousel" id="gomendioak">
+
         </div>
         <div class="homesection">
             <img src="{% static "irudiak/webimg/lagunak.jpg" %}" alt="Lagun batzuk blunt bat erretzen pizza jaten duten bitartean">
             <div class="rightsection">
                 <h2>Zure osagai gogokoenak</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+                <p>
+                    Gure osagaiak kalitate altukoak dira, 
+                </p>
             </div>
         </div>
         <div class="homesection">
@@ -87,7 +57,9 @@
             <img src="{% static "irudiak/webimg/etxerako.png" %}" alt="Tximino bat janaria entregatzen">
             <div class="rightsection">
                 <h2>Etxerako</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto at atque esse molestiae nemo. Accusantium aut commodi culpa deleniti eius excepturi ipsa maxime, nihil nobis optio possimus quibusdam, quo, voluptate.</p>
+                <p>
+                    Pizzak, hanburgesak, brownieak... Dena zure etxean, zure lagunekin, zure gustora.
+                </p>
             </div>
         </div>
         <div class="goseaduzu">
@@ -97,4 +69,6 @@
     </div>
     {% include "elements/footer.html" %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static "js/home.js" %}"></script>
 </html>

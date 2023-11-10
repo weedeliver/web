@@ -1,8 +1,9 @@
+import random
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -191,3 +192,11 @@ def saskira_gehitu(request, pid):
         saskia.saskia_items.add(saskia_item)
 
     return HttpResponseRedirect(reverse('saskia'))
+
+
+def gomendioak(request):
+    gomendioak_produktuak = list(Produktua.objects.all())
+    random_produktuak = random.sample(gomendioak_produktuak,10)
+
+    data = [{"name": gomendioa.izena, "image": gomendioa.img.url} for gomendioa in random_produktuak]
+    return JsonResponse(data, safe=False)

@@ -70,6 +70,10 @@ a {
 }
 
 /*AFTER HERO*/
+#gomendioak h4 {
+    white-space:nowrap;
+}
+
 .homesection {
     display: flex;
     margin: 50px 0;
