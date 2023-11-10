@@ -206,9 +206,24 @@ def unitateak_aldatu(request):
     if existing_item and aldatu == "gehitu": 
         existing_item.kantitatea += 1
         existing_item.save()
-    elif existing_item and aldatu == "kendu":
+    elif existing_item and aldatu == "kendu" and existing_item.kantitatea > 0:
         existing_item.kantitatea -= 1
         existing_item.save()
-
-    data = [{'success': True,"prezioa":produktua.prezioa}]
+    else:
+        return JsonResponse({'success':False})
+    
+    data = [{'success': True,"prezioa":produktua.prezioa,"kantitatea":existing_item.kantitatea}]
     return JsonResponse(data,safe=False)
+
+@login_required
+def saskitik_ezabatu(request):
+    user = request.user
+    bezeroa = Bezeroa.objects.get(user=user)
+    saskia= Saskia.objects.filter(bezeroa=bezeroa).first()
+    item_id = request.POST['item_id']
+    ##Sortutako itema ezabatu
+    item = SaskiaItem.objects.get(id=item_id,saskia=saskia)
+    item.delete()
+
+
+    return JsonResponse({'success': True})
