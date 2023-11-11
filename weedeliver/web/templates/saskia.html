@@ -44,9 +44,11 @@
             <span class="flex1">Guztira</span>
             <span ><b id="guztira">{{ items|total }} €</b></span>
         </div>
-        <div>
+        {% if items.count > 0%}
+        <div class="erosi">
             <a href="erosketa/">Erosi</a>
         </div>
+        {% endif %}
         <div class="hflex saskiabento">
             <div class="bento bentoh">
                 <h3>Hona bidali</h3>
