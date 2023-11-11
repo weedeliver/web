@@ -662,12 +662,15 @@ font-size: 15px;
     display:flex;
     align-items:center;
     justify-content:center;
+    width: 30px;
 }
 
 .saskiaprezioa {
-    margin: 0 15px;
+    margin: 0 15px 0 0;
     font-weight: 600;
     font-size: 20px;
+    width: 70px;
+    text-align: right;
 }
 
 .saskiabidalketa {
@@ -690,4 +693,41 @@ font-size: 15px;
 
 .bentoguztira {
     text-align: right;
+}
+
+.guztirah {
+    gap: 20px;
+    align-items:center;
+}
+
+.guztirah h4 {
+    margin: 0;
+}
+
+.erosi {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    font-family: Manrope, sans-serif;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    align-self: flex-end;
+}
+
+.erosi a {
+    color: white;
+    text-decoration: none;
+}
+
+img.saskiadelete {
+    height: 40px;
+    width: 40px;
+    margin: 0 10px;
+}
+
+.delete {
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
