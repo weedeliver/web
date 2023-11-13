@@ -106,7 +106,8 @@ def logout_view(request):
 def kontua(request):
     user = request.user
     bezeroa = Bezeroa.objects.get(user=user)
-    return render(request, 'kontua.html', {'bezeroa': bezeroa})
+    erosketak = Erosketa.objects.filter(bezeroa=bezeroa)
+    return render(request, 'kontua.html', {'bezeroa': bezeroa,'erosketak':erosketak})
 
 
 @login_required

@@ -27,6 +27,13 @@
                 {% endif %}
                 <h4>Zure erosketak</h4>
                 <!--TODO: erosketak-->
+                {% for erosketa in erosketak%}
+                <div class="erosketa-info">
+                    <p>{{erosketa.data}}</p>
+                    <p>{{erosketa.produktuak.count}} produktu</p>
+                    <p>{{erosketa.totala|floatformat:2}}</p>
+                </div>
+                {% endfor %}
             </div>
         <!--Bento bat informazio ezberdinarekin-->
             <div class="vflex accountbento">
