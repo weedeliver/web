@@ -731,3 +731,10 @@ img.saskiadelete {
     justify-content: center;
     display: flex;
 }
+
+.erosketa-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 2em;
+}
