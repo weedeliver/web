@@ -25,7 +25,10 @@
                     <div class="btn minusplus" name="plus" id="{{item.produktua.id}}">+</div>
                     <a href="" class="delete" id="{{ item.id }}"><img class="saskiadelete" alt="ezabatu" src='{% static "irudiak/webimg/icons/trash.svg" %}'></a>
                 </div>
+
                 <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
+
+
             </div>
         {% endfor %}
 
@@ -74,7 +77,11 @@
             <div class="bento bentoh bentoguztira">
                 <div class="hflex guztirah">
                     <h4 class="flex1">Guztira</h4>
+                    {% if bezeroa.harpidetza == "basic" %}
+                    <h3><b id="guztira">{{ items|total|sum:3.99 }} €</b></h3>
+                    {% else %}
                     <h3><b id="guztira">{{ items|total }} €</b></h3>
+                    {% endif %}
                 </div>
                 Bez barne
                 {% if items.count > 0%}
