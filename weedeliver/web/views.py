@@ -194,6 +194,7 @@ def saskira_gehitu(request, pid):
 
     return HttpResponseRedirect(reverse('saskia'))
 
+
 def unitateak_aldatu(request):
     product_id = request.POST['product_id']
     aldatu = request.POST['aldatu']
@@ -213,9 +214,18 @@ def unitateak_aldatu(request):
         existing_item.save()
     else:
         return JsonResponse({'success':False})
-    
-    data = [{'success': True,"prezioa":produktua.prezioa,"kantitatea":existing_item.kantitatea}]
+
+    if produktua.deskontua.izena != "Ez":
+        if produktua.deskontua.isEhunekoa:
+            deskontua = produktua.prezioa - (produktua.prezioa * produktua.deskontua.kantitatea / 100)
+        else:
+            deskontua = produktua.prezioa - produktua.deskontua.kantitatea
+
+        data = [{'success': True,"prezioa":deskontua,"kantitatea":existing_item.kantitatea}]
+    else:
+        data = [{'success': True,"prezioa":produktua.prezioa,"kantitatea":existing_item.kantitatea}]
     return JsonResponse(data,safe=False)
+
 
 @login_required
 def saskitik_ezabatu(request):

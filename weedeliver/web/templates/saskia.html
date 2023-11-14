@@ -17,7 +17,13 @@
                 <img src="../{{ item.produktua.img|cut:'web/' }}" alt="{{ item.produktua.izena }}">
                 <div class="saskiaizena">
                     <h4>{{ item.produktua.izena }}</h4>
+                    {% if item.produktua.deskontua.izena == "Ez" %}
                     <span>{{ item.produktua.prezioa }}€</span>
+                    {% elif item.produktua.deskontua.isEhunekoa %}
+                    <span><span class="strike">{{ item.produktua.prezioa }}€</span> {{ item.produktua.prezioa|percent:item.produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                    {% else %}
+                    <span><span class="strike">{{ item.produktua.prezioa }}€</span> {{ item.produktua.prezioa|sub:item.produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                    {% endif %}
                 </div>
                 <div class="hflex">
                     <div class="btn minusplus" name="minus" id="{{item.produktua.id}}">-</div>
