@@ -216,8 +216,11 @@ def unitateak_aldatu(request):
         existing_item.kantitatea += 1
         existing_item.save()
     elif existing_item and aldatu == "kendu" and existing_item.kantitatea > 0:
-        existing_item.kantitatea -= 1
-        existing_item.save()
+        if existing_item.kantitatea != 1:
+            existing_item.kantitatea -= 1
+            existing_item.save()
+        else:
+            return JsonResponse({'success': False})
     else:
         return JsonResponse({'success': False})
 
