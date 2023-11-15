@@ -738,3 +738,11 @@ img.saskiadelete {
     justify-content: space-between;
     margin-right: 2em;
 }
+
+.erosketa-btn{
+    height: fit-content;
+    padding: 10px 15px;
+    font-size: 16px;
+    align-self: center;
+    margin-left: 1em;
+}

@@ -25,15 +25,21 @@
                 {% if bezeroa.helbidea == none %}
                     <div class="warndiv">Datu batzuk falta dira, mesedez, bete zure datu guztiak eskaera bat egiteko</div>
                 {% endif %}
-                <h4>Zure erosketak</h4>
-                <!--TODO: erosketak-->
-                {% for erosketa in erosketak%}
-                <div class="erosketa-info">
-                    <p>{{erosketa.data}}</p>
-                    <p>{{erosketa.produktuak.count}} produktu</p>
-                    <p>{{erosketa.totala|floatformat:2}}€</p>
+                <div class="hflex">
+                    <h4>Zure erosketak</h4>
+                    <button type="button" id="erosketa-anim" class="btn erosketa-btn">Erosketak ezkutatu</button>
                 </div>
-                {% endfor %}
+
+     
+                <div id="erosketa-info">
+                    {% for erosketa in erosketak%}
+                    <div class="erosketa-info">
+                        <p>{{erosketa.data}}</p>
+                        <p>{{erosketa.produktuak.count}} produktu</p>
+                        <p>{{erosketa.totala|floatformat:2}}€</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         <!--Bento bat informazio ezberdinarekin-->
             <div class="vflex accountbento">
@@ -85,4 +91,18 @@
     </div>
     {% include "elements/footer.html" %}
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#erosketa-anim").on('click',function (e){
+            if($("#erosketa-info").is(":visible")){//ikusten bada ezkutatu
+                $("#erosketa-info").animate({height: "hide"},300);
+                $("#erosketa-anim").text("Erosketak erakutsi")
+            }else{
+                $("#erosketa-info").animate({height: "show"},300);
+                $("#erosketa-anim").text("Erosketak ezkutatu")
+            }
+        })
+    })
+</script>
 </html>
