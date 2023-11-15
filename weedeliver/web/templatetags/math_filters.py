@@ -30,9 +30,9 @@ def multiply(value, arg):
     return value * arg
 
 @register.filter(name='total')
-def ttotal(items):
+def total(items):
     guztira = 0
     for item in items:
-        guztira += item.kantitatea * item.produktua.prezioa
+        guztira += item.kantitatea * item.prezioa_deskontua
     return "{:.2f}".format(guztira)
 

@@ -188,6 +188,12 @@ def saskira_gehitu(request, pid):
         saskia_item = SaskiaItem()
         saskia_item.produktua = produktua_obj
         saskia_item.kantitatea = kantitatea
+        saskia_item.prezioa_deskontua = produktua_obj.prezioa
+        if saskia_item.produktua.deskontua.izena != "Ez":
+            if saskia_item.produktua.deskontua.isEhunekoa:
+                saskia_item.prezioa_deskontua = saskia_item.produktua.prezioa - (saskia_item.produktua.prezioa * saskia_item.produktua.deskontua.kantitatea / 100)
+            else:
+                saskia_item.prezioa_deskontua = saskia_item.produktua.prezioa - saskia_item.produktua.deskontua.kantitatea
         saskia_item.saskia = saskia
         saskia_item.save()
         saskia.saskia_items.add(saskia_item)
@@ -213,18 +219,16 @@ def unitateak_aldatu(request):
         existing_item.kantitatea -= 1
         existing_item.save()
     else:
-        return JsonResponse({'success':False})
+        return JsonResponse({'success': False})
 
     if produktua.deskontua.izena != "Ez":
         if produktua.deskontua.isEhunekoa:
-            deskontua = produktua.prezioa - (produktua.prezioa * produktua.deskontua.kantitatea / 100)
+            data = [{'success': True,"prezioa": produktua.prezioa - (produktua.prezioa * produktua.deskontua.kantitatea / 100),"kantitatea": existing_item.kantitatea}]
         else:
-            deskontua = produktua.prezioa - produktua.deskontua.kantitatea
-
-        data = [{'success': True,"prezioa":deskontua,"kantitatea":existing_item.kantitatea}]
+            data = [{'success': True,"prezioa": produktua.prezioa - produktua.deskontua.kantitatea,"kantitatea": existing_item.kantitatea}]
     else:
-        data = [{'success': True,"prezioa":produktua.prezioa,"kantitatea":existing_item.kantitatea}]
-    return JsonResponse(data,safe=False)
+        data = [{'success': True,"prezioa": produktua.prezioa,"kantitatea": existing_item.kantitatea}]
+    return JsonResponse(data, safe=False)
 
 
 @login_required
@@ -256,7 +260,7 @@ def erosketa_egin(request):
     for i in items:
         produktua = i.produktua
         produktuak.append(produktua)
-        guz = guz + (i.kantitatea * i.produktua.prezioa) 
+        guz = guz + (i.kantitatea * i.prezioa_deskontua)
     
     erosketa = Erosketa()
     erosketa.bezeroa = bez
@@ -270,6 +274,7 @@ def erosketa_egin(request):
     saskia.delete()
     items.delete()
     return HttpResponseRedirect(reverse('index'))
+
 
 def gomendioak(request):
     gomendioak_produktuak = list(Produktua.objects.all())

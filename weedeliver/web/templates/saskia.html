@@ -18,11 +18,9 @@
                 <div class="saskiaizena">
                     <h4>{{ item.produktua.izena }}</h4>
                     {% if item.produktua.deskontua.izena == "Ez" %}
-                    <span>{{ item.produktua.prezioa }}€</span>
-                    {% elif item.produktua.deskontua.isEhunekoa %}
-                    <span><span class="strike">{{ item.produktua.prezioa }}€</span> {{ item.produktua.prezioa|percent:item.produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                        <span>{{ item.produktua.prezioa|floatformat:2 }}€</span>
                     {% else %}
-                    <span><span class="strike">{{ item.produktua.prezioa }}€</span> {{ item.produktua.prezioa|sub:item.produktua.deskontua.kantitatea|floatformat:2 }}€</span>
+                        <span><span class="strike">{{ item.produktua.prezioa|floatformat:2 }}€</span> {{ item.prezioa_deskontua|floatformat:2 }}€</span>
                     {% endif %}
                 </div>
                 <div class="hflex">
@@ -32,7 +30,7 @@
                     <a href="" class="delete" id="{{ item.id }}"><img class="saskiadelete" alt="ezabatu" src='{% static "irudiak/webimg/icons/trash.svg" %}'></a>
                 </div>
 
-                <span class="saskiaprezioa">{{ item.produktua.prezioa|multiply:item.kantitatea|floatformat:2}}€</span>
+                <span class="saskiaprezioa">{{ item.prezioa_deskontua|multiply:item.kantitatea|floatformat:2}}€</span>
 
 
             </div>
@@ -84,9 +82,9 @@
                 <div class="hflex guztirah">
                     <h4 class="flex1">Guztira</h4>
                     {% if bezeroa.harpidetza == "basic" %}
-                    <h3><b id="guztira">{{ items|total|sum:3.99 }} €</b></h3>
+                    <h3><b id="guztira">{{ items|total|sum:3.99|floatformat:2 }} €</b></h3>
                     {% else %}
-                    <h3><b id="guztira">{{ items|total }} €</b></h3>
+                    <h3><b id="guztira">{{ items|total|floatformat:2 }} €</b></h3>
                     {% endif %}
                 </div>
                 Bez barne

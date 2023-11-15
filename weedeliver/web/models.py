@@ -59,6 +59,7 @@ class Erosketa(models.Model):
 
 class SaskiaItem(models.Model):
     produktua = models.ForeignKey(Produktua,on_delete=models.CASCADE)
+    prezioa_deskontua = models.FloatField()
     kantitatea = models.IntegerField()
     saskia = models.ForeignKey('Saskia',on_delete=models.CASCADE,related_name='saskia_items')
 
